@@ -44,7 +44,7 @@
             $title = $row['title'];
             $name = $row['name'];
             $date = $row['date'];
-            // $file = $row['file'];
+            $file = $row['file'];
             // $hit = $row['hit'];
 
         }
@@ -57,9 +57,9 @@
                 <?php echo $row['name']; ?> <?php echo $row['date']; ?>
                     <div id = "bo_line"></div> 
             </div>
-            <!-- <div>
-            파일 : <a href="upload/<?php echo $file ?>" download><?php echo $file ?></a>
-            </div> -->
+            <div>
+            파일 : <img style=width:50% ; src = "<?=$file?>">
+            </div>
 
             <div id = "bo_content">
                 <?php echo nl2br($row['content']); ?>
