@@ -1,0 +1,6 @@
+Maria DB 
+
+create database board6;
+use board6;
+CREATE TABLE `e_board`
+( `idx` int unsigned AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , `pw` VARCHAR(100) NOT NULL , `title` VARCHAR(100) NOT NULL , `content` TEXT NOT NULL ,  date datetime DEFAULT NOW(), PRIMARY KEY (`idx`));
