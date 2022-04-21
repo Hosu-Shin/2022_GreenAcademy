@@ -34,11 +34,14 @@ ul li {
     width: 900px;
     position: relative;
     word-break: break-all;
+    text-align: center;
+    margin-top: 10px;
 }
 
 #user_info {
     font-size: 12px;
     margin-top: 3px;
+    text-align: right;
 }
 #user_info ul li {
     float: left;
@@ -50,10 +53,13 @@ ul li {
     height: 2px;
     background: grey;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
+
 
 #bo_content {
     margin-top: 20px;
+    text-align: center;
 }
 
 #bo_ser {
