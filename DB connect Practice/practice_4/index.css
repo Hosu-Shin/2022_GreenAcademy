@@ -1,0 +1,35 @@
+table.table {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+}
+
+table.table thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+
+table.table tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+}
+
+table.table td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 참고 사이트 : https://nanati.me/html_css_table_design/ */
