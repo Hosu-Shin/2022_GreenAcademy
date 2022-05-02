@@ -6,13 +6,13 @@
         $writer = $param["writer"];
         $title = $param["title"];
         $ctnt = $param["ctnt"];
-        $file = $param["file"];
+        $folder = $param["fileName"];
 
         $sql = 
         "   INSERT INTO t_board
             (title, ctnt, writer, file)
             VALUES
-            ('$title', '$ctnt', '$writer', '$file')
+            ('$title', '$ctnt', '$writer', '$folder')
         ";
 
         $conn = get_conn();
@@ -31,6 +31,7 @@
         $row = mysqli_fetch_assoc($result);
         return $row['cnt'];
     }
+
 
     function sel_board_list(&$param){
 
@@ -200,5 +201,3 @@
 
             return $result;
         }
-
-
