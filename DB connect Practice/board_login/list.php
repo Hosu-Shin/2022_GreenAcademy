@@ -27,9 +27,25 @@
         "row_count" => $row_count,
         "start_idx" => ($page - 1) * $row_count
     ];
-    $paging_count = sel_paging_count($param);
+    $total_page = sel_paging_count($param);
     $list = sel_board_list2($param);
     
+    $page_count = 3;
+
+    $total_block = ceil($total_page/$page_count);
+    $now_block = ceil($page/$page_count);
+
+    $s_pageNum = ($now_block-1) * $page_count+1;
+
+    if($s_pageNum <= 0) {
+        $s_pageNum = 1;
+    };
+
+    $e_pageNum = $now_block * $page_count;
+
+    if($e_pageNum > $total_page) {
+        $e_pageNum = $total_page;
+    };
 
 ?>
 
@@ -40,7 +56,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href="common.css" />
+    <link rel = "stylesheet" type = "text/css" href="css/common.css" />
     <title>리스트</title>
 </head>
 <body>
@@ -48,7 +64,7 @@
         <header>
             <?= isset($_SESSION["login_user"]) ? $nm . "님 환영합니다" : "" ?> <!--로그인이 되어 있으면 작동-->
             <div class = "list">
-                <a href="list.php">리스트</a>
+                <!-- <a href="list.php">리스트</a> -->
                 <?php if(isset($_SESSION["login_user"])) { ?>
                     <a href = "write.php">글쓰기</a>
                     <a href = "logout.php">로그아웃</a>
@@ -67,7 +83,7 @@
             </div>
         </header>
         <main>
-            <h1>리스트</h1>
+            <h1><a href="list.php">리스트</a></h1>
             <div id = "table">
                 <table>
                     <thead>
@@ -79,28 +95,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
-                            include_once "db/db_board.php";
-
-                            $result = sel_board_list($param);
-
-                            while($row = mysqli_fetch_assoc($result)) 
-                        
-                        {
-                            $i_board = $row['i_board']; 
-                            $title = $row['title'];
-                            $nm = $row['nm'];
-                            $create_at = $row['created_at'];
-                            
-                            print "<tr>";
-                            print "<td>${i_board}</td>";
-                            print "<td><a href = 'detail.php?i_board=${i_board}';>${title}</a></td>";
-                            print "<td>${nm}</td>";
-                            print "<td>${create_at}</td>";
-                            print"</tr>";
-                        }
-                        ?> -->
-
                         <?php
                         
                         //<?php while($item = mysqli_fetch_assoc($list)) {} ?> 
@@ -119,11 +113,23 @@
             </div>
             <div class = "num">
                 <?php
-                    for($i=1; $i <= $paging_count; $i++) { ?>
-                        <span class = "<?= $i===$page ? "pageSelected" : "" ?>">
+                if($page > 1){
+                    echo "<a href='list.php?page=" .($page-1). "'>◁</a>";
+                } 
+                    for($i=$s_pageNum; $i <= $e_pageNum; $i++) { ?>
+            
+                       <span class = "<?= $i==$page ? "pageSelected" : "" ?>">
                         <a href = "list.php?page=<?= $i ?>"><?= $i ?></a>
                     </span>
                 <?php } ?>
+                <?php
+                if ($page < $total_page) {
+                    echo "<a href='list.php?page=" .($page+1). "'>▷</a>";
+                }
+                ?>
+            </div>
+            <div>
+
             </div>
         </main>
     </div>
