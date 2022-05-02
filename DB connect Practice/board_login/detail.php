@@ -3,8 +3,7 @@
     $i_board = $_GET['i_board'] ;
     $file = $_FILES['file'];
     $param = [
-        "i_board" => $i_board,
-        "file" => $file
+        "i_board" => $i_board
     ];
 
     $item = sel_board($param);
@@ -24,11 +23,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "common.css" />
+    <link rel = "stylesheet" type = "text/css" href = "css/detail.css" />
     <title><?=$item["title"]?></title>
 </head>
 <body>
-    <div><a href="list.php">리스트</a></div>
+    <div id = "name"><a href="list.php">리스트</a></div>
     <?php if(isset($_SESSION['login_user']) && $login_user['i_user'] === $item['i_user']) { ?>
     <div>
         <a href="mod.php?i_board=<?=$i_board ?>"><button>수정</button></a>
@@ -39,7 +38,10 @@
         <div>제목 : <?=$item['title']?></div>
         <div>글쓴이 : <?=$item['nm']?></div>
         <div>등록일시 : <?=$item['created_at']?></div>
-        <div><파일 : <?=$item['file']?>></div>
+        <!-- <div><파일 : <?=$item['file']?>></div> -->
+        
+        <div><img src="upload/<?= $item['file'] ?>" ></div>
+        
         <div> <?=$item['ctnt']?> </div>
     </div>
     <div class = "button">
@@ -66,11 +68,10 @@
                          LIMIT 1;
                         ";
             $prev_result = mysqli_query($conn, $prev_sql);
-            
-
         }
         ?>
         <a href = "detail.php?i_board=<?=$prev_num?>"></a> -->
+
     <script>
         function isDel() { //함수 정의 부분
             console.log('isDel 실행 됨');
