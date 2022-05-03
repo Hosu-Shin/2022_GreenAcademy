@@ -67,7 +67,7 @@
         $start_idx = $param['start_idx'];
         $row_count = $param['row_count'];
 
-        $sql = " SELECT A.i_board, A.title, A.created_at,
+        $sql = " SELECT A.i_board, A.title, date(A.created_at) as date, time(A.created_at) as time,
                         B.nm
                  FROM t_board A
                  INNER JOIN t_user B 
@@ -82,6 +82,14 @@
         return $result;
         
     }
+
+    // function select_check($row_count, $count) {
+    //     if($row_count == $count) {
+    //         echo "<option value=".$count."selected>";
+    //     } else {
+    //         echo "<option value=".$count.">";
+    //     }
+    // }
 
     function sel_board2($param){
         $i_board = $param['i_board'];
@@ -201,3 +209,5 @@
 
             return $result;
         }
+
+
