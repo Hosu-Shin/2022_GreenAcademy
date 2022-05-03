@@ -1,5 +1,7 @@
 <?php
     include_once "db/db_board.php";
+    include_once "db/db.php";
+
     session_start(); // header 때문에 session start()가 있음
     $nm = "";
 
@@ -22,13 +24,32 @@
         //echo $nm , "님 환영합니다"; - 이렇게 만들 경우 위치를 따로 잡을 수가 없음
     }
 
-    $row_count = 5;
+
+    $row_count_list = array(5, 10, 15, 20);
+    
+    
+    if(isset($_POST['board_list_count'])){
+        $row_count = $_POST['board_list_count'];
+    } else {
+        $row_count = $row_count_list[0];
+    }
+
     $param = [
         "row_count" => $row_count,
         "start_idx" => ($page - 1) * $row_count
     ];
     $total_page = sel_paging_count($param);
     $list = sel_board_list2($param);
+
+
+    $conn = get_conn();
+    $qurey = "SELECT date(NOW()) as dat";
+
+    date('Y')."-".date('m')."-".date('d'); 
+   
+    $result = mysqli_query($conn, $qurey);
+    $row = mysqli_fetch_assoc($result);
+
     
     $page_count = 3;
 
@@ -47,6 +68,14 @@
         $e_pageNum = $total_page;
     };
 
+    function select_check($row_count, $count) {
+        if($row_count == $count) {
+            echo "<option value=".$count." selected>";
+        } else {
+            echo "<option value=".$count.">";
+        }
+    }
+    
 ?>
 
 
@@ -84,14 +113,45 @@
         </header>
         <main>
             <h1><a href="list.php">리스트</a></h1>
+            <!-- <div>
+                <form method = "POST">
+                    <div id = "select">
+                        <select name = "board_list_count" id = "select2" onchange = this.form.submit()>
+                            <?php
+                            for ($i=0; $i < count($row_count_list); $i++) {
+                            
+                                echo select_check($row_count, $row_count_list[$i]).$row_count_list[$i]. "개</option>";
+                            }
+                            ?>
+                            
+                        </select>
+                    </div>
+                </form>
+            </div> -->
             <div id = "table">
                 <table>
+                    <tr>
+                    <form method = "POST">
+                        <div id = "select">
+                            <select name = "board_list_count" id = "select2" onchange = this.form.submit()>
+                                <?php
+                                for ($i=0; $i < count($row_count_list); $i++) {
+                                
+                                    echo select_check($row_count, $row_count_list[$i]).$row_count_list[$i]. "개</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </form>
+                    </tr>
                     <thead>
                         <tr>
                             <th>글번호</th>
                             <th>제목</th>
                             <th>작성자명</th>
                             <th>등록일시</th>
+                            <th>test</th>
+                            <th>조회수</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,7 +164,26 @@
                                 <td><?=$item["i_board"]?></td> 
                                 <td><a href = "detail.php?i_board=<?=$item['i_board']?>"><?=$item["title"]?></a></td>
                                 <td><?=$item["nm"]?></td>
-                                <td><?=$item["created_at"]?></td>
+                                <!-- <td><?=$item["date"]?></td> -->
+                                <td>
+                                    <?php 
+                                    if ($row['dat'] === $item['date']) {
+                                        echo $item['time'];
+                                    } 
+                                    else {
+                                        echo $item['date'];
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($item['date'] == date('Y')."-".date('m')."-".date('d')) {
+                                        echo  $item['time'];
+                                    } else {
+                                        echo $item['date'];
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     
@@ -117,8 +196,8 @@
                     echo "<a href='list.php?page=" .($page-1). "'>◁</a>";
                 } 
                     for($i=$s_pageNum; $i <= $e_pageNum; $i++) { ?>
-            
-                       <span class = "<?= $i==$page ? "pageSelected" : "" ?>">
+                        <!--타입이 달라서 ""로 출력되었기 때문에 class가 안 먹힘, 그래서 ==로 값만 같도록 조정함-->
+                       <span class = "<?= $i==$page ? "pageSelected" : "" ?>"> 
                         <a href = "list.php?page=<?= $i ?>"><?= $i ?></a>
                     </span>
                 <?php } ?>
