@@ -15,6 +15,8 @@
     if(isset($_SESSION['login_user'])) {
     $login_user = $_SESSION["login_user"];
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +40,10 @@
         <div>제목 : <?=$item['title']?></div>
         <div>글쓴이 : <?=$item['nm']?></div>
         <div>등록일시 : <?=$item['created_at']?></div>
-        <!-- <div><파일 : <?=$item['file']?>></div> -->
-        
-        <div><img src="upload/<?= $item['file'] ?>" ></div>
-        
+        <!-- <div><파일 : <img src='upload/<?=$item['file']?>'>></div> -->
+        <?php if($item['file'] !== ""){
+            echo "<div><img src='upload/".$item["file"]."'></div>";
+        }?>
         <div> <?=$item['ctnt']?> </div>
     </div>
     <div class = "button">
