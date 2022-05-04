@@ -1,6 +1,6 @@
 <?php
     include_once "db/db_board.php";   
-    $i_board = $_GET['i_board'] ;
+    $i_board = $_GET['i_board'];
     $file = $_FILES['file'];
     $param = [
         "i_board" => $i_board
@@ -16,7 +16,11 @@
     $login_user = $_SESSION["login_user"];
     }
 
+    $view = view($param);
 
+    $comment = comment($param);
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +44,7 @@
         <div>제목 : <?=$item['title']?></div>
         <div>글쓴이 : <?=$item['nm']?></div>
         <div>등록일시 : <?=$item['created_at']?></div>
+        <div>조회수 : <?= $item['view'] ?></div>
         <!-- <div><파일 : <img src='upload/<?=$item['file']?>'>></div> -->
         <?php if($item['file'] !== ""){
             echo "<div><img src='upload/".$item["file"]."'></div>";
@@ -73,7 +78,30 @@
         }
         ?>
         <a href = "detail.php?i_board=<?=$prev_num?>"></a> -->
-
+    <div>
+        <h4>< 댓글 ></h4>
+            <?php 
+                foreach($comment as $item) { ?>
+                    <div>작성자 : <?=$item['nm']?></div>
+                    <div>내용 : <?=$item['ctnt']?></div>
+                    <div>작성일시 <?= $item['created_at'] ?></div>
+                <?php } ?>
+        <form method = "post" action = "comment.php">
+            <table>
+                <tr>
+                    <td>
+                        <input type = "hidden" name = "i_board" value="<?= $i_board ?>" />
+                        <textarea name="ctnt" placeholder="내용"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "submit" value = "작성" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <script>
         function isDel() { //함수 정의 부분
             console.log('isDel 실행 됨');
