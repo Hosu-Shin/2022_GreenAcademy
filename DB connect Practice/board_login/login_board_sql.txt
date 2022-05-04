@@ -1,0 +1,131 @@
+DROP TABLE t_user;
+
+CREATE TABLE t_user(
+	i_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	uid VARCHAR(20) UNIQUE NOT NULL,
+	upw CHAR(30) NOT NULL,
+	nm VARCHAR(5) NOT NULL, 
+	gender INT not null CHECK(gender IN (0, 1)),
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+	
+	SELECT * FROM t_user;
+	
+-- primary key 3가지 옵션 : unique, not null, index
+
+DROP TABLE t_board;
+
+CREATE TABLE t_board(
+	i_board INT UNSIGNED AUTO_INCREMENT,
+	PRIMARY KEY(i_board),
+	title VARCHAR(100) NOt NULL,
+	ctnt VARCHAR(2000) NOT NULL,
+	writer INT UNSIGNED NOT NULL,	
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (writer) REFERENCES t_user (i_user)
+);
+
+SELECT * FROM t_board;
+
+
+SELECT A.i_board, A.title, A.ctnt, B.nm, A.created_at FROM t_board A
+                INNER JOIN t_user B ON A.writer = B.i_user
+                ;
+                
+                
+SELECT * FROM t_board WHERE i_board = 1;
+
+DELETE FROM t_board WHERE i_board = 1;
+
+UPDATE t_board SET
+                    title = '수정',
+                    ctnt = '수정되니'
+                    WHERE
+                    i_board = 6;
+                    
+SELECT COUNT(i_board) / 3
+FROM t_board;
+
+-- 반올림 round
+-- 강제내림 floor
+-- 강제올림 ceil
+
+-- 다음글(지난글)
+SELECT i_board FROM t_board WHERE i_board < 10 ORDER BY i_board DESC LIMIT 1;
+-- 이전글(최신글)
+SELECT i_board FROM t_board WHERE i_board > 10 ORDER BY i_board LIMIT 1;
+
+
+SELECT DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at FROM t_board;
+
+CREATE TABLE test_user1(
+	i_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	uid VARCHAR(20) UNIQUE NOT NULL,
+	upw CHAR(30) NOT NULL,
+	nm VARCHAR(5) NOT NULL, 
+	gender INT not null CHECK(gender IN (0, 1)),
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE test_board1(
+	num INT UNSIGNED AUTO_INCREMENT,
+	PRIMARY KEY(num),
+	title VARCHAR(100) NOt NULL,
+	ctnt VARCHAR(2000) NOT NULL,
+	user INT UNSIGNED NOT NULL,	
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (user) REFERENCES test_user1 (i_user)
+);
+
+
+
+
+
+
+
+
+
+
+SELECT date(NOW()) AS dat;
+
+SELECT * FROM visit_db;
+
+select SUM(COUNT) FROM visit_db;
+
+DELETE FROM visit_db;
+
+SELECT * FROM t_board WHERE title LIKE "%글%" 
+							  	 OR title LIKE "%써%";
+
+SELECT A.i_board, A.title,A.created_at,
+                        B.i_user, B.nm
+                 FROM t_board A
+                 INNER JOIN t_user B 
+                 ON A.writer = B.i_user;
+                 
+SELECT A.i_board, A.title,A.created_at, B.i_user, B.nm FROM t_board A INNER JOIN t_user B ON A.writer = B.i_user WHERE A.title LIKE '%언제%' OR A.title LIKE '%써%';
+
+UPDATE t_board SET VIEW = VIEW+1 WHERE i_board  = 2;
+
+CREATE TABLE t_comment (
+   num INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   i_board INT UNSIGNED NOT NULL, 
+   i_user INT UNSIGNED NOT NULL,
+   ctnt VARCHAR(1000) NOT NULL,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP(),
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP(),
+   FOREIGN KEY (i_user) REFERENCES t_user(i_user),
+   FOREIGN KEY (i_board) REFERENCES t_board(i_board)
+);
+
+INSERT INTO t_comment (i_board, i_user, ctnt) VALUES ('2', '2', 'test');
+
+SELECT num, i_board, i_user, ctnt from t_comment WHERE num = 4;
+
+SELECT i_user, ctnt FROM t_comment WHERE i_board = 2;
+                     
+INSERT INTO t_comment (i_board, i_user, ctnt) VALUES ('2', '2', '야');    
