@@ -39,6 +39,7 @@
         "start_idx" => ($page - 1) * $row_count
     ];
     $total_page = sel_paging_count($param);
+
     $list = sel_board_list2($param);
 
 
@@ -75,7 +76,19 @@
             echo "<option value=".$count.">";
         }
     }
-    
+
+    //검색버튼을 눌렀거나, 검색어가 존재한다면
+    if(isset($_POST['search_input_txt']) && $_POST['search_input_txt'] !== "") {
+        $param += [
+            "search_select" => $_POST["search_select"], //select 박스 value값
+            "search_input_txt" => $_POST["search_input_txt"] //검색어
+        ];
+        //DB조회 전달 후 결과 list를 받아온다
+        $list = search_board($param);
+    }
+
+    list($today, $total) = visit();
+
 ?>
 
 
@@ -128,29 +141,31 @@
                     </div>
                 </form>
             </div> -->
+            <form method = "POST">
+                <div id = "select">
+                    <select name = "board_list_count" id = "select2" onchange = this.form.submit()>
+                        <?php
+                        for ($i=0; $i < count($row_count_list); $i++) {
+                        
+                            echo select_check($row_count, $row_count_list[$i]).$row_count_list[$i]. "개</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </form>
+            <div>
+                <div>Total : <?= $total ?> </div>
+                <div>Today : <?= $today ?> </div>
+            </div>
             <div id = "table">
                 <table>
-                    <tr>
-                    <form method = "POST">
-                        <div id = "select">
-                            <select name = "board_list_count" id = "select2" onchange = this.form.submit()>
-                                <?php
-                                for ($i=0; $i < count($row_count_list); $i++) {
-                                
-                                    echo select_check($row_count, $row_count_list[$i]).$row_count_list[$i]. "개</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </form>
-                    </tr>
                     <thead>
                         <tr>
                             <th>글번호</th>
                             <th>제목</th>
                             <th>작성자명</th>
                             <th>등록일시</th>
-                            <th>test</th>
+                            <!-- <th>test</th> -->
                             <th>조회수</th>
                         </tr>
                     </thead>
@@ -175,7 +190,8 @@
                                     }
                                     ?>
                                 </td>
-                                <td>
+                                    
+                                <!-- <td>
                                     <?php
                                     if ($item['date'] == date('Y')."-".date('m')."-".date('d')) {
                                         echo  $item['time'];
@@ -183,7 +199,8 @@
                                         echo $item['date'];
                                     }
                                     ?>
-                                </td>
+                                </td> -->
+                                <td><?= $item["view"]?></td>
                             </tr>
                         <?php } ?>
                     
@@ -207,9 +224,19 @@
                 }
                 ?>
             </div>
-            <div>
-
-            </div>
+            <form method = "POST" action = "list.php">
+                <div>
+                    <select name = "search_select" id = "">
+                        <option value = "search_writer">작성자</option>
+                        <option value = "search_title">제목</option>
+                        <option value = "search_ctnt">제목+내용</option>
+                    </select>
+                    <div>
+                        <input type = "text" name ="search_input_txt">
+                        <input type = "submit" value = "검색">
+                    </div>
+                </div>
+            </form>
         </main>
     </div>
 </body>
