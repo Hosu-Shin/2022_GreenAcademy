@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM을 공부합시다.</h1>
+    <button onclick = "addContents();">더 보기</button>
+    <div id = "info"></div>
+    
+    <script>
+ 
+        const imgSrc = 'https://images.unsplash.com/photo-1548460464-2a68877c7a5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80'
+        const imgAlt = '이미지 정보'
+
+        const divInfo = document.querySelector('#info');
+        
+        function addContents() {
+            const newP = divInfo.appendChild(document.createElement('p'));
+
+            const newImg = document.createElement('img');
+            //newImg.setAttribute('src', imgSrc);
+            //newImg.setAttribute('alt', imgAlt);
+            
+            newImg.src = imgSrc;
+            newImg['alt'] = imgAlt;
+
+
+            newP.append('DOM은 ㅇㅇㅇㅇㅇ');
+            divInfo.appendChild(newImg);
+
+            console.log(newImg);
+            
+        }
+
+        function addContents2() {
+            const div = document.createElement('div');
+
+            divInfo.innerHTML = `
+                <p>Dom</p>
+                <img src = '${imgSrc}' alt='${imgAlt}'>
+            `;
+            divInfo.appendChild(div);
+        }
+    </script>
+</body>
+</html>

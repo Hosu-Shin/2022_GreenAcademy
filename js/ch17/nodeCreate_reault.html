@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c_pointer { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Web Programing</h1>
+    <p>공부할 주제를 기록해 보세요.</p>
+    <div>
+        <input type = "text" id = "subject">
+        <input type = "button" value="추가" onclick="newReg();">
+        <input type = "button" value="삭제" onclick="delSubject();">
+    </div>
+    <div id ="itemList"></div>
+
+    <script>
+
+    //풀이 1)
+        const item = document.getElementById('subject');
+        const itemList = document.querySelector('#itemList');
+        
+        function newReg() {
+            
+            const newDiv = itemList.appendChild(document.createElement('div'));
+            
+            console.log(item);
+            
+            newDiv.classList.add('c_pointer');
+
+            newDiv.append(item.value);
+            item.value = '';
+    
+    //클릭해서 삭제
+            // newDiv.addEventListener('click', () => {
+            //     newDiv.remove();
+            // });
+
+            SelDel(newDiv);
+        }
+      
+
+    
+    //풀이 2)
+    /*
+        function newReg() {
+            const item = document.getElementById('subject').value;
+            //item 은 input value의 문자열이 복사 된 것이라 input의 value와는 별개임
+
+            const itemList = document.querySelector('#itemList');
+            
+            const newDiv = itemList.appendChild(document.createElement('div'));
+            
+            console.log(item, typeof(item));
+            
+            newDiv.append(item);
+            document.getElementById('subject').value = '';
+        }
+    */
+    
+
+    //삭제 풀이 1)
+        function delSubject() {
+            const delDiv = itemList.removeChild(itemList.lastChild);
+            //const delDiv2 = itemList.removeChild(itemList.childNodes[0]);
+
+            console.log(delDiv);
+            
+        }
+        
+    //삭제 풀이 2)
+        function delSubject() {
+            const delDiv = document.querySelector('#itemList > div:last-child');
+            delDiv.remove();
+        }
+
+    //삭제 풀이 3)
+        function delSubject() {
+            itemList.lastChild.remove();
+        }
+
+    //강사님 풀이) 는 안쓰는 걸로
+        function delSubject() {
+            const pList = itemList.querySelectorAll('p');
+            pList[pList.lenght -1].remove();
+        }
+
+    //클릭해서 삭제하기
+        function SelDel(del) {
+            console.log(del);
+            del.addEventListener('click', () => {
+                del.remove();
+            });
+        }
+
+    </script>
+</body>
+</html>
