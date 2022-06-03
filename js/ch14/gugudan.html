@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .dan {
+            display: inline-block;
+            padding: 0 20px 30px 20px;
+            margin: 15px;
+            border: 1px solid #ccc;
+            line-height: 2;
+        }
+
+        .dan h3 { text-align: center; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>구구단</h1>
+    <script>
+
+        //내가 한 방법
+        var sum = 0;
+        for(var i = 1; i < 10; i++) {
+            document.write(`<h4>${i}단</h4>`);
+            for(var j = 1; j < 10; j++) {
+                sum = i*j;
+                console.log(i + 'x' + j + '=' + sum);
+                document.write(`<div>${i}x${j} = ${sum}</div>`);
+            }
+            document.write('<br>');
+        }
+
+        //강사님 답안
+        for(var i=1; i<=9; i++) {
+            document.write('<div class="dan">');
+                document.write(`<h3>${i}단</h3>`);
+            for(var j=1; j<=9; j++) {
+                document.write(`<div>${i} X ${j} = ${i * j}</div>`);
+            }
+            document.write('</div>');
+        }
+
+    </script>
+</body>
+</html>

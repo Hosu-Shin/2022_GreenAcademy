@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const n1 = Number(prompt('값 1'));
+        const n2 = Number(prompt('값 2'));
+
+        // 두 수의 값이 같으면 두 수를 곱한 값을 리턴
+        // 두 수의 값이 다르면 두 수를 더한 값을 리턴
+        //sumMulti함수를 이용하여 n1, n2 값의 결과값을 콘솔에 프린트해 주세요.
+        
+        function sumMulti(x, y) {
+            if(n1 === n2) {
+                console.log(`n1 x n2 : ${n1*n2}`);
+            } else {
+                console.log(`n1 + n2 : ${n1+n2}`);
+            }
+        } 
+        sumMulti();
+        //이렇게 할 경우 x, y 가 필요가 없음
+
+        
+        function sumMulti2(x, y) {
+            if(x === y) {
+                console.log(x * y);
+            }
+            console.log(x + y);
+        }
+
+        sumMulti2(n1, n2);
+
+
+        //강사님 풀이
+        function sumMulti3(x, y) {
+            return x === y ? x * y : x + y;
+        }
+        const result = sumMulti3(n1, n2);
+        console.log(result);
+
+    </script>
+</body>
+</html>

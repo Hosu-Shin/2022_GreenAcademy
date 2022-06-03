@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heading {color: blue;};
+    </style>
+</head>
+<body>
+    <h1 id = "heading" class ="heading">자바스크립트</h1>
+    <p id = "text" class ="heading" onclick = "changeColor(this);">위 텍스트를 클릭해 보세요</p>
+    <script>
+
+    //var로 함수를 정의하지 않고 이벤트를 걸고 동작하는 방법 (과거의 방법임)
+    //changeColor(a) {a.style.color = ''}해도 동작함
+        function changeColor(target) {
+            target.style.color = 'red';
+        }
+
+        var heading = document.querySelectorAll('.heading');     
+        heading[0].onclick = function() {
+            //heading[0].style.color = 'red';
+            this.style.color = 'red';
+            //this는 나 자신을 뜻함 (여기서는 '.heading')
+        }
+    </script>
+</body>
+</html>

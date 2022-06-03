@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = 10;
+
+        function displayNumber() {
+            console.log(`x is ${x}`);
+            console.log(`y is ${y}`);
+            var y = 20;
+        }
+        displayNumber();
+
+        /*
+        y is undefined 인 이유는 hoisting되기 때문에 현재 funtion은 
+            function displayNumber() {
+                var y;
+                console.log(`x is ${x}`);
+                console.log(`y is ${y}`);
+                var y = 20;
+            }
+        이렇게 변해있음
+        
+        var y = 20; 이후에 console.log(`y is ${y}`); 을 적으면 y 값이 나온다
+        */
+    </script>
+</body>
+</html>

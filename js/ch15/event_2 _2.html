@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result { height: 300px; background-color: #ccc;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href = "#" id="first_a">Green</a></li>
+        <li><a href = "#" id="second_a">Orange</a></li>
+        <li><a href = "#" onclick="changeBg('purple')">Purple</a></li>
+        <li><a href = "#" id="third">Yellow</a></li>
+    </ul>
+    <div id ="result"></div>
+    <script>
+        const resultDiv = document.querySelector('#result');
+
+        function changeBg(color) {
+            resultDiv.style.backgroundColor = color;
+        }
+
+
+        function changeOrange() {
+            resultDiv.style.backgroundColor = 'orange';
+        }
+
+        const firstA = document.querySelector('#first_a');
+        firstA.onclick = function() {
+            changeBg('green');
+        }
+
+
+        //secondA.onclick = changeBg('orange');
+        //함수 호출, 리턴 이해하기
+        
+        function bindFn() {
+            return function() {
+        // return () => { 로 적어도 됨        
+                resultDiv.style.backgroundColor = 'orange';
+            }
+        }
+
+        const secondA = document.querySelector('#second_a');
+        secondA.onclick = bindFn(); 
+        //bindFn()은 함수 호출이고, 앞에 = 이 있어서 바인딩 되는 것
+        //즉, 호출 후 연결(리턴 값 복사)
+
+
+        
+        const A = document.querySelector('#third');
+        A.onclick = function(e) {
+            
+            console.log(A);
+            changeBg('yellow');
+           
+        }
+    </script>
+</body>
+</html>

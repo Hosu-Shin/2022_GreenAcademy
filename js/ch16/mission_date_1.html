@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const now = new Date();
+        const writedDay = new Date('2022-05-30 13:00:00');
+
+        console.log(now);
+        document.write(`Now : ${now.toLocaleDateString()} <br>`);
+
+        //1~59분 전 => 3.540 초
+        //1~23시간 전 => 82,800 초
+        //1~15일 전 => 1,296,000 초
+        //1~3달 전 => 7,776,000 초
+        //이후는 날짜
+        
+        function getPassedInfo(sDate, eDate) {
+            const sDateMilSec = sDate.getTime();
+            const eDateMilSec = eDate.getTime();
+            const passedSec = (eDateMilSec - sDateMilSec) / 1000 ;
+                //eDate에서 sDate까지 걸린 초 값
+ 
+            if(passedSec < 3599) { //59분 59초 전
+                const min = Math.floor(passedSec / 60);
+                return `${min}분 전`;
+            } else if(passedSec < 82800) {
+                const hour = Math.floor(passedSec / 3600); //3600 : 시간(60*60)
+                return `${hour}시간 전`;
+            } else if(passedSec < 1296000) {
+                const date = Math.floor(passedSec / 86400);
+                return `${date}일 전`;
+            } else if(passedSec < 7776000) {
+                const mon = Math.floor(passedSec / 2592000);
+                return `${mon}달 전`;
+            } else {
+                const year = sDate.getFullYear();
+                const mon = fillZero(sDate.getMonth() +1);
+                const date = fillZero(sDate.getDate());
+                return `${year}-${mon}-${date}`;
+            }
+ 
+        }
+ 
+        function fillZero(val) {
+            return ('0' + val).slice(-2);
+            //slice(-2)를 하면 배열의 마지막 2개의 요소를 추출한다
+        }
+
+        const result = getPassedInfo(writedDay, now);
+        console.log(result);
+        document.write(`${writedDay.toLocaleString()}은 ${now.toLocaleString()}로 부터 ${result}`);
+ 
+
+        /*연습   
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const day = now.getDate();
+
+        const YesterDay = new Date(year, month, day -1 ).toLocaleDateString();
+        console.log(`YesterDay = ${YesterDay}`);
+        document.write(`YesterDay : ${YesterDay} <br>`);
+        
+        const aWeekAgo = new Date(year, month, day -7).toLocaleDateString();
+        console.log(`A Week Ago = ${aWeekAgo}`);
+        document.write(`Last Week : ${aWeekAgo} <br>`);
+
+        const aMonthAgo = new Date(year, month -1, day).toLocaleDateString();
+        console.log(`A Month Ago = ${aMonthAgo}`);
+        document.write(`Last Month : ${aMonthAgo} <br>`);
+
+        const lastYear = new Date(year -1, month, day).toLocaleDateString();
+        console.log(`A Year Ago = ${lastYear}`);
+        document.write(`Last Year : ${lastYear} <br>`)
+        */
+
+        //https://gurtn.tistory.com/10
+        //https://kdinner.tistory.com/68
+
+
+
+    </script>
+</body>
+</html>

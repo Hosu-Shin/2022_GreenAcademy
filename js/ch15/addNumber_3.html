@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //익명 함수
+        /*
+        function(a, b){
+            return a + b;
+        }
+        //익명 함수는 무조건 함수에 접근할 수 있도록 변수를 할당해 줘야 사용할 수 있다
+        */
+
+        const sum = function(a, b) {
+            return a + b ;
+        }
+
+        const result = sum(10,20);
+        document.write(`result : ${result} <br>`);
+
+        const fn = sum;
+        console.log(fn);
+        // 익명함수에 접근할 수 있는 주솟값을 복사함
+
+        const result2 = sum(10,20);
+        document.write(`result : ${result} <br>`);
+        document.write(`result2 : ${result2}`);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result { height: 300px; background-color: #ccc;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href = "#" id="first_a">Green</a></li>
+        <li><a href = "#" id="second_a">Orange</a></li>
+        <li><a href = "#" onclick="changeBg('purple')">Purple</a></li>
+        <li><a href = "#" id="third">Yellow</a></li>
+    </ul>
+    <div id ="result"></div>
+    <script>
+        const resultDiv = document.querySelector('#result');
+        // 굳이 function안에 넣지 않고, 전역변수로 두어도 된다
+
+        function changeBg(color) {
+            //color에는 이벤트 객체가 들어온다
+            resultDiv.style.backgroundColor = color;
+        }
+
+
+        function changeOrange() {
+            resultDiv.style.backgroundColor = 'orange';
+        }
+
+        const firstA = document.querySelector('#first_a');
+        firstA.onclick = function() {
+            changeBg('green');
+        }
+
+        const secondA = document.querySelector('#second_a');
+        secondA.onclick = changeOrange;
+        //onclick에는 주솟값을 넣어줘야 한다
+            
+        //secondA.onclick = changeBg('orange');
+        //호출된 함수가 리턴하는 값이 없어서 undefined.
+
+        
+
+        
+        const A = document.querySelector('#third');
+        A.onclick = function(e) {
+            //function(e)를 적을 경우 이벤트 객체가 들어온다 (e 외의 다른 거 적어도 무관)
+            //이벤트 객체를 받고 싶지 않을 경우에는 ()로 비워 두면 된다
+            console.log(A);
+
+            changeBg('yellow');
+            //이벤트 객체를 받아왔지만 무시하고 yellow 실행
+        }
+    </script>
+</body>
+</html>

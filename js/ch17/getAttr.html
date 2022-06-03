@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "prod-pic">
+        <button onclick="changePic();">이미지 바꾸기</button>
+    <img src="https://res.cloudinary.com/fleetnation/image/private/c_fill,g_center,h_640,w_640/v1538126067/gh2wkxck6mjcqipw1syy.jpg"
+         alt="Lechfall" id = "fall" width="640" height="640"
+         onclick="displaySrc();"
+         abc = "안녕">
+    </div>
+    <script>
+        const falls = document.querySelector('#fall');
+
+        function displaySrc() {
+            //id 값이 fall인 태그의 주소값을 얻어 올 수 있디
+
+            console.log('getAttr: ' + falls.getAttribute('src'));
+            //메소드) src라고 하는 속성을 찾아 값을 리턴함
+
+            //getAttribute를 사용하지 않고 '.속성명'을 적어도 해당 속성의 주소값에 접근할 수 있다
+            console.log('.src: ' + falls.src);  //falls['src']로 표현해도 됨
+            console.log('.alt: ' + falls.alt);
+            console.log('.id: ' + falls.id);
+            console.log('.width: ' + falls.width);
+            console.log('.height: ' + falls.height);
+            console.log('.onclick: ' + falls.onclick);
+
+            console.log('.abc: ' + falls.abc);
+            console.log('.abc: ' + falls.getAttribute('abc'));
+            //getAttribute를 사용하는 이유 : 특정 속성의 값을 가져오기 위해 사용
+                                        // 'abc'라고 커스텀한 속성은 getAttribute를 통해서만 값을 얻어 올 수 있다
+        }
+
+        function changePic() {
+            //falls.src="https://m.media-amazon.com/images/I/81btJC6Kk+L._AC_SX679_.jpg"
+            
+            //누구의 무엇을 어떤값으로 (속성명과 속성값을 넣어줘야 한다)
+            falls.setAttribute('src', 'https://m.media-amazon.com/images/I/81btJC6Kk+L._AC_SX679_.jpg')
+            
+            falls['alt'] = 'aaaa';
+            falls['abc'] = 'ccccc';
+        }
+    </script>
+</body>
+</html>

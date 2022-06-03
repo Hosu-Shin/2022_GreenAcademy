@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>현재 시간 <span id="current" class="display"></span></p>
+    <button onclick="stopInter();">Stop</button>
+
+    <script>
+        let cnt = 0;
+        /*
+        setInterval(function() {
+            console.log(cnt++);
+        }, 1000);
+        */
+        //1초(1000milisec)마다 호출
+        
+        const interObj = setInterval(displayNow, 1000);
+
+        function stopInter() {
+            clearInterval(interObj);
+        }
+
+       
+        function displayNow() {
+            const now = new Date();
+            const currentTime = now.toLocaleTimeString();
+            document.querySelector('#current').innerText = currentTime;
+    
+        };
+
+        //위의 문장 줄이기
+        /*
+        const interObj = setInterval(function() {
+            const now = new Date();
+            document.querySelector('#current').innerHTML = now.toLocaleDateString();
+        }, 1000);
+        */
+
+    </script>
+</body>
+</html>

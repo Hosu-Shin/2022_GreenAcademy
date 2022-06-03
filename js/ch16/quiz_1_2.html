@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>현재 시간 <span id="current" class="display"></span></p>
+
+    <script>
+       
+        let displayNow = document.getElementById('current');
+
+
+       setInterval(function() {
+           
+            const currentTime = new Date();
+            const hour = currentTime.getHours();
+            const min = currentTime.getMinutes();
+            const sec = currentTime.getSeconds();
+            
+            let h = hour < 10 ? "0" + hour : hour
+            let m = min < 10 ? "0" + min : min
+            let s = sec < 10 ? "0" + sec : sec
+           
+            let time = h +':'+ m + ':' + s;
+            displayNow.innerText = time;
+            // console.log(`${hour} : ${min} : ${sec}`);
+
+        }, 1000);
+        
+    </script>
+</body>
+</html>

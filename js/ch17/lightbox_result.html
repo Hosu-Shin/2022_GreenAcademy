@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul { list-style: none;}
+        li { display: inline-block;}
+        .pic { width: 200px; height: 125px; cursor: pointer;}
+        #lightbox { 
+            height: 100%; width: 100%;
+            background-color: #00000066; 
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        #lightbox > img { 
+            border: 2px solid rgb(6, 160, 147);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class = "row">
+        <ul>
+            <li><img class = "pic" src="https://images.unsplash.com/photo-1570135430888-b195b8c21622?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></li>
+            <li><img class = "pic" src="https://images.unsplash.com/photo-1565497266884-ab28c50e91c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=902&q=80"></li>
+            <li><img class = "pic" src="https://images.unsplash.com/photo-1566821925752-5b9086cec45d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"></li>
+        </ul>
+    </div>
+    <div id = "lightbox">
+        <img src=""
+             id = "lightboxImage">
+    </div>
+
+    <script>
+        const lightbox = document.querySelector('#lightbox');
+        const lightboxImage = lightbox.querySelector('#lightboxImage');
+        
+        function showLightbox() {
+            const bigLocation = this.src;
+            //rowPic에서 호출 할 경우 this.는 item이 된다
+            lightboxImage.setAttribute('src', bigLocation);
+            lightbox.style.display = 'flex';
+        }
+        
+    
+
+        const rowPic = document.querySelectorAll('.pic');
+    
+        rowPic.forEach(item => {
+            item.addEventListener('click', showLightbox);
+            //item은 li의 img들
+        });
+ 
+        lightbox.addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+
+
+
+    </script>
+</body>
+</html>

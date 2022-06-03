@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers = ['A', 'B', 'C', 'D'];
+
+        for(let i = 0; i < numbers.length; i++) {
+            console.log(i);
+            document.write(`numbers[${i}] = ${numbers[i]} <br>`);
+        }
+
+        document.write('<hr>');
+        
+        //콜백함수)  numbers의 길이 만큼 값을 순차적으로 보내주면서 호출
+        numbers.forEach(function(item) {
+            document.write(`<div>${item}</div>`);
+        });
+        //forEach 메소드 
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var currentYear = 2022; //'' , ""이 없으므로 숫자열임
+        var birthYear;
+        var age;
+
+        birthYear = prompt('태어난 연도를 입력하세요. (YYYY)');
+        
+        age = currentYear - birthYear+1; 
+        //+는 문자열 합치기가 됨 (parseInt를 사용해 문자열은 숫자열로 바꿔줘야 한다 (형 변환))
+        //age = currentYear + parseInt('birthYear') + 1
+        
+        document.write(`${birthYear}년에 태어난 사람의 나이는 ${age}세 입니다.`);
+    </script>
+</body>
+</html>

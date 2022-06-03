@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function randomValue(sVal, eVal) {
+            return parseInt(Math.random() * (eVal - sVal + 1) + sVal);
+                // Math.floor(Math.random() * (eVal - sVal +1) +sVal);
+        }
+
+        const result = randomValue(10, 20);
+        console.log(result);
+
+        // while(true) {
+        //     const rVal = parseInt(Math.random() * (20 - 10 + 1) +10);
+        //         if(rVal < 10 || rVal > 21) {
+        //             console.log('dd');
+        //             break;
+        //         }
+        // }
+
+    </script>
+</body>
+</html>

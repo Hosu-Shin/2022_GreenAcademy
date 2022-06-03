@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        //lotto를 배열로 만듬
+        let lotto = [];
+        
+        //배열이 맞는지 확인
+        console.log(Array.isArray(lotto));
+        
+        let i = 0;
+
+        //length속성 : 배열의 길이를 반환하는 것
+        while(lotto.length < 6) {
+
+        //소수점 안 나오도록 정수로 바꾸기
+            const n = parseInt(Math.random()*45)+1;
+            
+        //lotto배열의 방을 i로 정하고 i방에 램덤한 n의 값을 담는다
+            //lotto[i] = n;
+        //i를 하나씩 더함
+            //i++;
+        
+        //중복검사 (indexOf() 활용)
+            //indexOf()함수 : 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환함
+                        //   (존재하지 않으면 -1 반환)
+            if(lotto.indexOf(n) < 0 ) {
+        //lotto.indexOf(n)값이 존재하지 않으면(: -1) push 메소드는 배열 끝에 값을 추가한다
+            lotto.push(n);
+            }
+        }
+        console.log(lotto);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heading {color: blue;};
+    </style>
+</head>
+<body>
+    <h1 id = "heading">자바스크립트</h1>
+    <p id = "text">위 텍스트를 클릭해 보세요</p>
+    <script>
+        // 이벤트 (: ~가 발생했을 때) 바인딩 (: ~ 하겠다)
+        // document : 브라우저에서 생성되는 객체
+                                    // 객체 : 속성(명사)과 동작(동사)을 가지고 있는 데이터
+        
+        var heading = document.querySelector('#heading');
+        // 소괄호가 보인다 = method(동작) 호출   / for while switch 는 명령어
+        // 속성이 되려면 뒤의 소괄호가 없어야 함
+
+        //예전에는 querySelector 말고 getElementById()을 사용했음
+                //querySelectorAll 말고 getElementsByClassName
+
+        //querySelector (값 1개)  / querySelectorAll (배열)
+        
+        // on : 이벤트     , click : 클릭을 하면 ~ 하겠다
+        heading.onclick = function() {
+            // onclick 이라는 속성에 function 을 걸어준다
+
+            heading.style.color = 'red';
+            console.log(heading.style.color);
+        }
+
+    // '=' 은 기존의 것은 동작하지 않고 최신의 것으로 교체된다
+        heading.onclick = function() {
+            this.style.backgroundColor = 'pink';
+        }
+
+    //Event를 추가하는 방법 : addEventListener
+        heading.addEventListener('click', function() {
+            alert('클릭.');
+        });
+
+    </script>
+</body>
+</html>

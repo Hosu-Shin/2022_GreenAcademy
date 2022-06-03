@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [2, 7, 8, 24, 16, 1, 9];
+        //오름차순
+        //그냥 sort를 할 경우 문자열로 취급하여 순서가 꼬일 수 있다
+        arr.sort();
+        console.log(arr);
+        
+        //오른차순
+        arr.sort(function(a, b) {
+            //if(a > b) return -1;
+            return a - b;
+        });
+
+        //내림차순
+        arr.sort(function(a, b) {
+            //if(a > b) return 1;
+            return b - a;
+        });
+        console.log(arr);
+        
+    </script>
+</body>
+</html>

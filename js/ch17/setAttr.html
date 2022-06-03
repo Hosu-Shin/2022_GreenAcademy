@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #main { width: 500px; height: 300px;}
+        #main > img { width: 100%;}
+        #sub {width: 500px; height: 100px; display: flex;}
+        #sub > img {flex-grow: 0; }
+
+    </style>
+</head>
+<body>
+    <div id = "main">
+        <img src ="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+        id = "mainImg">
+    </div>
+    <div id = "sub">
+        <img src ="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+        class = "subImg">
+        <img src ="https://images.unsplash.com/photo-1615744455875-7ad33653e8c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+        class = "subImg">
+        <img src ="https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+        class = "subImg">
+    </div>
+    <script>
+    
+    //인터넷 보고 찾은 거
+        const mainImg = document.querySelector('#mainImg');
+        const subImg = document.querySelectorAll('.subImg');
+
+        for(let i = 0; i < subImg.length; i++) {
+            subImg[i].addEventListener('click', changePic);
+        }
+
+        /*
+        function changePic() {
+            let subImgAttribute = this.getAttribute('src');
+            mainImg.setAttribute('src', subImgAttribute);
+        */
+        
+
+        function changePic() {
+            const subImg = this.getAttribute('src');
+            document.getElementById('mainImg').setAttribute('src', subImg);
+            
+        }
+
+    //강사님 풀이
+        const imgMain = document.querySelector('#main > img');
+
+        const subImgs = document.querySelectorAll('#sub > img');
+                                //All은 배열로 가져옴
+        console.log(subImgs);
+        subImgs.forEach(item => {
+            console.log(item);
+            item.addEventListener('click', function() {
+                imgMain.src = this.src;
+            })
+        })
+
+    //책 풀이
+        const imgMain2 = document.querySelector('#main > img');
+
+        const subImgs2 = document.querySelectorAll('#sub > img');
+        subImgs2.forEach(item => {
+            item.onclick = function() {
+                imgMain2.src = item.src;
+                            // item 말고 this사용해도 됨
+            }
+            //click했을 때, imgMain2의 src 주소를 item의 src 주소로 복사해서 준다
+        });
+
+    </script>
+</body>
+</html>

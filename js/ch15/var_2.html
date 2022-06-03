@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var mulit;
+    //전역 변수처럼 사용하고 싶다면, 어디에도 속하지 않은 최상위 변수를 지정해 주는 것이 좋다
+    
+        function addSum() {
+            var sum = 10 + 20;
+            multi = 10 * 20;
+        }
+        // funtion안의 지역변수는 {} 밖으로 hoisting되지는 않는다
+
+        addSum();
+        console.log(multi);
+        
+    </script>
+</body>
+</html>

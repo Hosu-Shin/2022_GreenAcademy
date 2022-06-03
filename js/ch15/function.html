@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //이름 없는 함수 호출하는 방법 : 소괄호로 묶어 주기
+        (function() {
+            document.write('실행<br>');
+        })
+        ();
+        //function을 ()로 감싸는 이유는 변수의 범위를 제한하기 위해서이다 (스코프)
+
+        let fn1 = (function() {
+            return 10;
+        })();
+        console.log(fn1);
+        //fn1 = 10이 되는 이유는 ();로 fn1을 한 번 호출했기 때문 
+
+        let fn2 = (function() {
+            document.write('ddd');
+        }) ();
+        console.log(fn2);
+        //fn2 = undefined 인 이유는 return 이 없어서
+
+        (function(val) {
+            document.write(`val : ${val}`);
+        })(10);
+        // val에 10이 담김
+        
+        
+    </script>
+</body>
+</html>

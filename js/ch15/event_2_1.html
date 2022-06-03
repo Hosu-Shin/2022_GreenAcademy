@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result { height: 300px; background-color: #ccc;}
+    </style>
+</head>
+<body>
+    <script>
+       const obj = {
+            name : 'name',
+            onclick : null
+//          속성명 : 속성값
+}
+//          obj.onclick();
+            obj.onclick = function() {
+                document.write('dd');
+            }
+            obj.onclick();
+
+            obj.onclick = function(e) {
+                console.log(e);
+                document.write('dd');
+            }
+            obj.onclick();
+            //호출하는 것에 매게변수(파라미터)가 없어서 undefined가 뜸
+            obj.onclick('a');
+            //onclick 안에 파라미터를 넣어주면 됨
+
+            const e = {
+                'target' : '누구',
+                x: 128,
+                y: 1111
+            };
+            obj.onclick(e);
+
+    </script>
+</body>
+</html>

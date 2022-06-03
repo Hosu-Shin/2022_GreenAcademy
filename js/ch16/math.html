@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Math.PI = 1.1;
+        console.log(Math.PI);
+
+        //무조건 올림
+        console.log(Math.ceil(12.1));
+        //반올림
+        console.log(Math.round(12.1));
+        console.log(Math.round(12.9));
+        //내림(버림)
+        console.log(Math.floor(12.9));
+        //랜덤 ( 0~1미만 까지의 수)
+        console.log(Math.random());
+
+        console.log('------------------------');
+
+        // 0~9 사이의 랜덤한 값 만들고 싶음
+        const rVal = parseInt(Math.random() * 10);
+        console.log(rVal);
+
+
+        //1~9사이의 랜덤한 값
+        const ran =  parseInt(Math.random() * 9 +1 );
+        console.log(ran);
+
+        // while(true) {
+        //     const rVal2 = Math.floor(Math.random() * 9 ) +1
+        //반복문 안에서의 변수는 한 바퀴 돌 때 마다 새롭게 만들어 진다 (let보다 const가 좋음)
+
+        //     if(rVal < 1 || rVal2 > 9) {
+        //         console.log('잘 못 만들었음 !!');
+        //         break;
+        //     }
+        // }
+        //무한 루프 돌면 잘 만들 것
+
+
+        //10~20 : 20 - 10 => 10 + 2
+        const rVal3 = parseInt(Math.random() * 11 +10);
+        console.log(rVal3);
+
+        // while(true) {
+        //     const rVal3 = parseInt(Math.random() * 11 +10)
+        //         if(rVal3 < 10 || rVal > 21) {
+        //             console.log('dd');
+        //             break;
+        //         }
+        // }
+
+
+        // 25 ~ 50 : 50 - 25 => 25 + 1
+        const rVal4 = parseInt(Math.random()*26 +25);
+        console.log(rVal4); 
+
+        // while(true) {
+        //     const rVal3 = parseInt(Math.random() *26 +25)
+        //         if(rVal3 < 25 || rVal3 > 51) {
+        //             console.log('dd');
+        //             break;
+        //         }
+        // }
+
+        // 25 ~ 40
+        const rVal5 = parseInt(Math.random()*16 +25);
+        console.log(rVal5); 
+
+    </script>
+</body>
+</html>

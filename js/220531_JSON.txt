@@ -1,0 +1,22 @@
+ - 객체는 그대로 저장이 안 되기 때문에([객체.toString]으로 저장이 된다) 문자열로 바꿔서 저장을 한다
+
+JSON : 객체 (메모리 안에 있는 값) => 문자열로 바꾸는 것
+ex) console에 찍어보기
+ {
+     const obj = {name : '홍길동', age:  10}
+     const str = JSON.stringify(obj);
+     str : ' {"name" : "'홍길동'", "age":  10} '
+     obj.name : ' 홍길동 '
+     str.name : undefined
+     obj.age : 10
+
+     const obj2 = JSON.parse(str)
+    obj2.age : 10
+ }
+
+문자열을 다시 객체로 변환
+
+
+window.location.href = 'https://www.naver.com';
+
+에ㅔ베ㅔㅔ베베베ㅔ베베베 

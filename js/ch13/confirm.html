@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        //변수 선언(최초 한 번)
+        var reply;
+
+        //초기 값 대입
+        reply = true;
+        //결과 호출
+        console.log(reply);
+        
+        //값 대입
+        reply = false;
+        console.log(reply);
+    */
+
+        var reply = confirm("정말 배경 이미지를 바꾸겠습니까?");
+        console.log(reply);
+    
+        // 위의 쿼리를 하나의 문장으로 만듬
+        console.log(confirm('정말 배경 이미지를 바꾸겠습니까?'));
+
+        if(confirm('정말 지우겠습니까?')) {
+            console.log('지움');
+        } 
+        // else {
+        //     console.log('안지움');
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .d_none {display: none;}
+    </style>
+</head>
+<body>
+    <img src = "https://i.picsum.photos/id/360/700/700.jpg?hmac=PFaqF9sRDP4j9HOeFFflNsTdPZGCAn1Qx2aSzYGxd8E">
+    <button id="viewBtn" class="over" onclick="flagDisplay();">상세 설명 보기</button>
+    <div id="desc" class="detail d_none">
+        <h3>제목</h3>
+        <p>설명</p>
+        <button id="close" onclick="flagDisplay();">상세 설명 닫기</button>
+    </div>
+    <script>
+
+        const descDiv = document.querySelector('#desc');
+        const viewBtn = document.querySelector('#viewBtn');
+
+        function flagDisplay() {
+            descDiv.classList.toggle('d_none');
+            viewBtn.classList.toggle('d_none');
+        }
+    //toggle method
+    //add 
+    //remove
+        
+    </script>
+</body>
+</html>

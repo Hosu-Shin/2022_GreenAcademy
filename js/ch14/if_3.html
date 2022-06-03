@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var memNum = prompt('입장객은 몇 명인가요?'); //15
+        var colNum = prompt ('한 줄에 몇 명씩 있습니까?'); //4
+        var rowNum = Math.ceil(memNum / colNum);
+        
+        // rowNum = parseInt(memNum / colNum);
+        // console.log(rowNum);
+        
+
+        // if(memNum % colNum == 0) {
+        //     rowNum = parseInt(memNum / colNum);
+        // } else {
+        //     rowNum = parseInt(memNum / colNum) +1 ;
+        // }
+
+
+        document.write(`<div>입장객 : ${memNum}명</div>`);
+        document.write(`<div>한 줄 인원 : ${colNum}명</div>`);
+        document.write(`<div>모두 ${rowNum}개의 줄이 필요합니다.</div>`);
+    </script>
+</body>
+</html>

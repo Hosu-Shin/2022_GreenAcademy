@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const now = new Date();
+        console.log(now);
+        console.dir(now);
+        const date1 = new Date('2022-05-30 01:00:20');
+        console.log(date1.toLocaleString());
+
+        //date1의 년도 바꾸기
+        date1.setFullYear(2021);
+
+        console.log(date1.getFullYear());
+        //getMonth는 0부터 시작하기 때문에 +1을 해줘야 원하는 월을 얻을 수 있다
+        console.log(date1.getMonth() + 1);
+        console.log(date1.getDay());
+            // 0: 일요일, 6: 토요일, 1: 월요일
+        console.log(date1.getDate());
+        console.log(date1.getTime());
+        console.log(date1.getHours());
+        console.log(date1.getMinutes());
+        console.log(date1.getSeconds());
+        console.log(now.getMilliseconds());
+
+        //get(getters) : 가져오기 (출구)
+        //set(setters) : 바꾸기 (입구)
+
+    </script>
+</body>
+</html>
