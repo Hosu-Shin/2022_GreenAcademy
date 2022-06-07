@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type='number'] {width: 50px;}
+        table {border-collapse: collapse;}
+    </style>
+</head>
+<body>
+    <div>
+        <input type = "number" id ="rowNum">행
+        <input type = "number" id ="colNum">열
+        <button onclick = newTable(rowNum.value,colNum.value);>작성</button>
+        <button id = "write">작성2</button>
+    </div>
+    <div id = "result"></div>
+    <script>
+
+    function newTable(n1, n2) {
+        let tag = "<table border ='1'>";
+
+        const rowNum = parseInt(n1);
+        const colNum = parseInt(n2);
+
+        //열 만들기
+        for(let i=0; i<colNum; i++) {
+            tag += "<tr>";
+            //행 만들기
+            for(let j=0; j<rowNum; j++) {
+                tag += `<td>${i},${j}</td>`;
+            }
+            tag +='</tr>';
+        }
+        tag +='</table>';
+        
+        result.innerHTML = tag;
+        //document.getElementById('result').innerHTML = tag;
+        
+        console.log(`행(가로) : ${rowNum}`);
+        console.log(`열(세로) : ${colNum}`);
+    }
+
+    //참고 사이트 : https://lasdri.tistory.com/594
+
+
+//강사님 풀이
+    const inputRowNum = document.getElementById('rowNum');
+    const inputColNum = document.getElementById('colNum');
+    const btnWrite = document.getElementById('write');
+    const divResult = document.getElementById('result');
+    
+    btnWrite.addEventListener('click', function() {
+        const rowNum = Number(inputRowNum.value);
+        const colNum = Number(inputColNum.value);
+        const table = document.createElement('table');
+        divResult.innerHTML= '';
+        divResult.appendChild(table);
+
+        for(let i=0; i<rowNum; i++) {
+            const tr = document.createElement('tr');
+            table.appendChild(tr);
+            for(let z=0; z<colNum; z++) {
+                const td = document.createElement('td');
+                tr.appendChild(td);
+                td.innerText = `${i},${z}`;
+            }
+        }
+    });
+    
+    </script>
+</body>
+</html>
