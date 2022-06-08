@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [10, 43, 22, 28, 17, 56, 47];
+        const arr2 = arr.filter(function(item, idx) {
+            if(item % 2 === 0) {
+                return true;
+            } 
+            return false;
+        });
+        //filter : 원하는 조건의 ture값만 골라서 배열로 만들어 출력 (false값은 버림)
+        //filter는 map과 달리 배열의 길이가 달라질 수 있다 
+        //filter는 안의 값 수정 불가, map은 안의 값 수정 가능
+
+        console.log(arr.toString());
+        console.log(arr2.toString());
+
+        const arr3 = arr.filter(function(item, idx) {
+            if(idx % 2 === 0 ) {
+                return true;
+            }
+        });
+        //숫자) 0: false, 0제외: true
+        //문자열) '':  false, !'':true
+        console.log(arr3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        [10, 43, 22, 28, 17, 56, 47]
+        const myArr = {
+            '0' : 10,
+            '1' : 43,
+            '2' : 22,
+            '3' : 28,
+            '4' : 17,
+            '5' : 56,
+            '6' : 47,
+            'length': 7,
+            'forEach' : function(cb) {
+                for(let i=0; i < this.length; i++){
+                    const val = this[i]; //여기서 const는 for문이 돌 때 마다 '새롭게' 만들어 지는 상수
+                    cb(val, i);
+                }
+            }
+        }
+        console.log(myArr);
+
+        for(let i=0; i<myArr.length; i++) {
+            console.log(myArr[i]);
+        }
+        console.log(typeof([]));
+
+
+        let sum = 0;
+        function fnSum(item) {
+            sum += item;
+        };
+
+        myArr.forEach(fnSum);
+        console.log(`sum : ${sum}`);
+        /*
+        ※ 풀이
+        'forEach' : function(fnSum) {
+            for(let i=0; i < this.length; i++){
+                const val = this[i];
+                fnSum(val, i);
+            funSum은 인자를 하나만 요구하므로 val값만 가져옴
+            }
+        }
+        
+        ▼
+        
+        let sum = 0;
+        function fnSum(val) {
+            sum += val;
+        };
+        */
+        
+
+
+        const array = [10, 43, 22, 28, 17, 56, 47];
+
+        array.forEach(fnSum);
+        console.log(array, sum);
+
+    </script>
+</body>
+</html>
