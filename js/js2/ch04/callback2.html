@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//void 함수
+    function print(p1, p2, cb=hello) {
+        cb(p1, p2); //cb는 hello임
+    }
+
+    function hello(nm) { //nm은 print의 첫번째 인자(p1)를 받아옴
+        console.log(`Hi~ ${nm}`);
+        document.write(`Hi~ ${nm}`);
+    }
+
+    function goodbye(nm) {
+        console.log(`Bye~${nm}`);
+    }
+
+    print('아하');
+    print('흐어어어어엉','',goodbye)
+    </script>
+</body>
+</html>
