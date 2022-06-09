@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myArr = {
+            '0' : 10,
+            '1' : 43,
+            '2' : 22,
+            '3' : 38,
+            '4' : 17,
+            '5' : 56,
+            '6' : 47,
+            'length': 7,
+            'forEach' : function(cb) {
+                for(let i =0; i <this.length; i++) {
+                    cb(this[i],i);
+                }
+            },
+            'map' : function(cb) {
+                const arr = [];
+                for(let i=0; i < this.length; i++) {
+                    arr.push(cb(this[i],i));
+                }
+                return arr;
+            },
+            'filter' : function(cb) {
+                const arr = [];
+                for(let i=0; i<this.length; i++){
+                    if(cb(this[i],i)){
+                        arr.push(this[i]);
+                    }
+                }
+                return arr;
+            },
+            'toString' : function() {
+                let str ='[';
+                for(let i=0; i<this.length; i++) {
+                    str += i < this.length-1 ? `${this[i]},` : `${this[i]}]`;
+                }
+                return str;
+            }
+        }
+
+        //forEach
+        let sum = 0;
+        function fnSum(item) {
+            sum += item;
+        }
+        myArr.forEach(fnSum);
+        console.log(sum);
+
+        //map
+        const map = myArr.map(function(item) {
+            return item + 2;
+        })
+        console.log(map);
+
+        //filter
+        const filter = myArr.filter(function(item,idx) {
+            return idx < 4;
+        })
+        console.log(filter);
+
+        console.log(myArr.toString());
+
+    </script>
+</body>
+</html>
