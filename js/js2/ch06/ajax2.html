@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .container { max-width: 1600px; margin: 10px auto; background-color: #f5f5f5;}
+        ul {list-style: none;}
+        .listing-card { 
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .listing-card li {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #f0f0f0;
+            padding: 20px;
+        }
+        .listing-card li .img {
+            padding-top: 70%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+            <ul id = "list" class = "listing-card">
+                <!-- <li>
+                    <div class = "img" style = "background-image: url();"></div>
+                    <div class = "info">
+                        <strong class = "author">Author</strong>
+                    </div>
+                </li> -->
+            </ul>
+        <button onclick = "getData()";>데이터 가져오기</button>
+    </div>
+
+    <script>
+        let page = 1;
+        const ulList = document.querySelector('#list');
+        
+        function getData() {
+        console.log(`page : ${page}`);
+
+        const url = `https://picsum.photos/v2/list?limit=30&page=${page++}`;
+        fetch(url).then(function(res) {
+            return res.json();
+        }).then(function(data){
+            makeList(data);
+        });
+    }
+
+    function makeList(data) {
+        data.forEach(function(item) {
+            const img = makeImg(item);
+            ulList.appendChild(img);
+        });
+    }
+
+    function makeImg(item) {
+        const li = document.createElement('li');
+        const img = document.querySelector('.img');
+        //img.style.backgroundImage = `url(https://picsum.photos/id/${item.id}/${item.width}/${item.height})`;
+        const a = parseInt(item.width * 0.1);
+        const b = parseInt(item.height * 0.1);
+        item.download_url = `https://picsum.photos/id/${item.id}/${a}/${b}`;
+
+        
+        li.innerHTML = `
+            <div class = "img" style = "background-image: url(${item.download_url});"></div>
+            <div class = "info">
+                    <strong class = "author">${item.author}</strong>
+            </div>`;
+
+        
+        const aa = li.appendChild(document.createElement('div'));
+        aa.classList('img');
+        aa.style.backgroundImage = `url(https://picsum.photos/id/${item.id}/${item.width}/${item.height})`;
+        
+        const bb = li.appendChild(document.createElement('div'));
+        bb.classList('info');
+        
+        const cc = bb.appendChild(document.createElement('strong'));
+        cc.classList('author');
+        cc.append(item.author);
+        
+
+        console.log(img);
+        return li;
+
+    }
+
+    </script>
+</body>
+</html>

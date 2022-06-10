@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //비동기, 스레드(thread)가 1개만 있다고 가정
+        console.log('A');
+        console.log('B');
+        console.log('C');
+        console.log('D');
+        console.log('-----------------');
+        setTimeout(function(){
+            console.log('A');
+        }, 3000);
+        setTimeout(function(){
+            console.log('B');
+        }, 2500);
+        setTimeout(function(){
+            console.log('C');
+        }, 2000);
+    </script>
+</body>
+</html>

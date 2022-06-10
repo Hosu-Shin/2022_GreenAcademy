@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //f1 ~ f3 통신!
+        //fn1 리턴값을 fn2에 전달
+        //fn2 리턴값을 fn3에 전달
+
+        function fn1() {
+            return new Promise(function(resolve) {
+                resolve(10);
+            });
+        }
+
+        function fn2(val) {
+            return new Promise(function(resolve) {
+                resolve(val * 2);
+            });
+            //return val * 2 와 같음
+        }
+
+        function fn3(val) {
+            return new Promise(function(resolve) {
+                resolve(val - 1);
+            });
+        }
+
+        const p1 = fn1();
+        
+        //이렇게 쓰면 안 된다
+        p1.then(function(result) {
+            fn2(result).then(function(result2) {
+                fn3(result2).then(function(result3) {
+                    console.log(`result3 : ${result3}`);
+                });
+            });
+        });
+        console.log('------------------------');
+
+        p1.then(function(result) {
+            return result;
+        }).then(function(result2) {
+            return fn2(result2);
+        }).then(function(result3) {
+            return fn3(result3);
+        }).then(function(result4) {
+            console.log(`result4 : ${result4}`);
+        });
+    </script>
+</body>
+</html>

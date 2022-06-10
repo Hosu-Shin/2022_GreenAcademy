@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function pMethod(resolve, reject) { //resolve : promise가 넣어주는 콜백 함수
+            resolve('ㅇㅇㅇ');
+        }
+        const p1 = new Promise(pMethod);
+
+
+        function resolveMethod(result) { //(result)에 resolev('ㅇㅇㅇ')이 들어감
+            console.log(`resolveMethod : ${result}`);
+        }
+        p1.then(resolveMethod);
+        
+        
+        function catchMethod(result) { //(result)에 resolev('ㅇㅇㅇ')이 들어감
+            console.log(`catchMethod : ${result}`);
+        }
+        p1.catch(catchMethod);
+    </script>
+</body>
+</html>
