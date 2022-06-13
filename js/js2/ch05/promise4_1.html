@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       
+        function fn1() {
+            return new Promise(function (resolve) {
+                resolve(10);
+            });
+        }
+
+        function fn2(val) {
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve(val * 2);
+                    //setTimeout을 사용할 경우 return val * 2가 안됨
+
+                }, 1000);
+            });
+
+        }
+
+        const result = fn2(10);
+        result.then(function(val) {
+            console.log(val);
+        });
+
+    </script>
+</body>
+
+</html>
