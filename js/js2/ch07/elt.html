@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id ="container"></div>
+    <script>
+        function elt(name, attr) {
+            const node = document.createElement(name);
+            if(attr) {
+                for(let item in attr) { //in 연산자 : attr이 가지고 있는 속성 값을 하나하나 순차적으로 item에 준다
+                    if(attr.hasOwnProperty(item)) {
+                        node.setAttribute(item, attr[item]);
+                    }
+                }
+            }
+            return node;
+        }
+        
+        //element 안의 속성값을 가져오고 싶을 때
+        const eltImg = elt('img', {
+            'src': 'https://images.unsplash.com/photo-1532017201189-87395e311df4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1141&q=80', 
+            alt: '하마'
+            }
+        );
+        console.log(eltImg);
+
+        const divContainer = document.querySelector('#container');
+        divContainer.appendChild(eltImg);
+        
+
+        
+        const optionObj = {
+            'src': 'https://images.unsplash.com/photo-1532017201189-87395e311df4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1141&q=80', 
+            alt: '하마'
+        }
+        const eleImg = elt('img', optionObj); //elt함수에 img 속성과 potionObj라는 객체를 보냄
+        console.log(eleImg);
+        divContainer.appendChild(eleImg);
+    </script>
+</body>
+</html>

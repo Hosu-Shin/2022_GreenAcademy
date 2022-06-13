@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .background {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function elt(name, attr) {
+            const node = document.createElement(name);
+            if(attr) {
+                for(let item in attr) { //in 연산자 : attr이 가지고 있는 속성 값을 하나하나 순차적으로 item에 준다
+                    if(attr.hasOwnProperty(item)) {
+                        node.setAttribute(item, attr[item]);
+                    }
+                }
+            }
+            return node;
+        }
+
+        function createIconEditor(parent, nx, ny) {
+            //color input
+            const inputColor = elt('input', {type: 'color'});
+            parent.appendChild(inputColor);
+        
+            //All Clear Button
+            const btnAllClear = elt('input',{type: 'button', value: 'Allclear'});
+            parent.appendChild(btnAllClear);
+            
+            btnAllClear.addEventListener('click', function(){
+                if(table.style.display == ''){
+                table.style.display="none";
+                } else {
+                    table.style.display = '';
+                }
+            });
+
+
+            //table
+            const table = elt('table');
+            parent.appendChild(table);
+
+            table.style.borderCollapse = 'collapse';
+            table.style.marginTop = '10px';
+
+            
+            for(let i=0; i<ny; i++) {
+                let row = elt('tr');
+                console.log(row);
+
+                for(let j=0; j < nx; j++) {
+                    let col = elt('td');    
+                    row.appendChild(col);
+
+                    col.style.border = '1px solid black';
+                    col.style.padding = '5px';
+
+                    col.innerHTML = `${i}.${j}`
+                    // col.addEventListener('click', function(e) {
+                    //     e.target.style.backgroundColor = inputColor.value;
+                    // });
+
+                    // col.addEventListener('click', function(e) {
+                    //     console.log(e.target.style.backgroundColor);
+                    //     if(col.style.backgroundColor === '') {
+                    //         e.target.style.backgroundColor = inputColor.value;
+                    //     } else {
+                    //         e.target.style.backgroundColor = '';
+                    //     }
+                    // });
+                }
+
+                table.appendChild(row);
+            }
+            
+            const Color = document.querySelector('input[type=color]');
+            const td = table.getElementsByTagName('td');
+            const tr = table.getElementsByTagName('tr');
+            console.log(td);
+            console.log(tr);
+
+
+        }
+        
+
+        
+        createIconEditor(document.body, 10, 5);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            name : '홍길동',
+            age: 20
+        };
+        console.log(obj1.hasOwnProperty('name'));
+        console.log(obj1.hasOwnProperty('age'));
+        console.log(obj1?.name);
+        obj1.addr = '경기도';
+        console.log(obj1.hasOwnProperty('addr'));
+
+        console.log('------------');
+
+        function Human(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        const obj2 = new Human('홍길동', 21);
+        console.log(obj2.hasOwnProperty('name'));
+        console.log(obj2.hasOwnProperty('age'));
+        obj2.addr = '제주도';
+        console.log(obj2.hasOwnProperty('addr'));
+        Human.prototype.height = 182.2;
+        //obj2.height = 185;
+        console.log(obj2.height);
+        console.log(obj2.hasOwnProperty('height'));
+    </script>
+</body>
+</html>
