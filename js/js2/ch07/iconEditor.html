@@ -57,38 +57,71 @@
                     // col.addEventListener('click', function(e) {
                     //     e.target.style.backgroundColor = inputColor.value;
                     // });
+                
+                    //색 바꾸기 작업 : 단순화
+                    col.addEventListener('click', function(e) {
+                        console.log(e.target.style.backgroundColor);
 
-                    // col.addEventListener('click', function(e) {
-                    //     console.log(e.target.style.backgroundColor);
-                    //     if(col.style.backgroundColor === '') {
-                    //         e.target.style.backgroundColor = inputColor.value;
-                    //     } else {
-                    //         e.target.style.backgroundColor = '';
-                    //     }
-                    // });
+                        if(e.target.style.backgroundColor === '' || e.target.color16 !== inputColor.value) {
+                            e.target.style.backgroundColor = inputColor.value;
+                            e.target.color16 = inputColor.value;
+                        } else {
+                          e.target.style.backgroundColor = '';  
+                        }
+                        //color16은 새로운 속성을 하나 부여한 것임
+                    });
                 }
 
                 table.appendChild(row);
             }
             
-            //table 선택시 색깔 넣기
+            //색 바꾸기 작업 : td 배열 가져오기
             const Color = document.querySelector('input[type=color]');
             const td = document.querySelectorAll('td');
             console.log(td);
-
+            
             function colorChange(e) {
+            //색 넣고 빼기
+            //     if(e.target.style.backgroundColor === '') {
+            //    e.target.style.backgroundColor = Color.value;
+            //     } else {
+            //         e.target.style.backgroundColor = '';
+            //     }
+
+            // 색 바꾸기 작업 : 이미 색이 있는 곳에 다른 색 넣고 빼기
                 if(e.target.style.backgroundColor === '') {
-               e.target.style.backgroundColor = Color.value;
-                } else {
-                    e.target.style.backgroundColor = '';
-                }
+                            e.target.style.backgroundColor = inputColor.value;
+                        } else {
+                            const rgbToHex = convertRGBtoHex(e.target.style.backgroundColor);
+                            if(inputColor.value === rgbToHex) {
+                            e.target.style.backgroundColor = '';
+                        } else {
+                          e.target.style.backgroundColor = inputColor.value;  
+                        }}
             }
 
             td.forEach(item => {
                 item.addEventListener('click', colorChange);
             });
 
-            //버튼 누르면 td 색 빼기
+
+            //색 바꾸기 작업 : rgb값 hex값으로 바꾸기
+            function convertRGBtoHex(rgb) {
+                if(rgb === '') {
+                    return '';
+                }
+                const colors = rgb.substring(rgb.indexOf('(') + 1, rgb.lastIndexOf(')')).split(/,\s*/);
+                return '#' + colorToHex(colors[0]) + colorToHex(colors[1]) + colorToHex(colors[2]);
+            }
+
+            //색 바꾸기 작업 : 16진수를 10진수(숫자)로 표현
+            function colorToHex(color) {
+                var hexadecimal = parseInt(color, 10).toString(16);
+                return hexadecimal.length == 1 ? '0' + hexadecimal : hexadecimal;
+            }
+
+
+            //버튼 누르면 td 색 전부 빼기
             btnAllClear.addEventListener('click', function() {
                 td.forEach(item => {
                     item.style.backgroundColor = '';
@@ -99,7 +132,7 @@
         
 
         
-        createIconEditor(document.body, 10, 5);
+        createIconEditor(document.body, 10, 10);
     </script>
 </body>
 </html>
