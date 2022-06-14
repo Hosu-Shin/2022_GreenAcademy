@@ -33,15 +33,6 @@
             //All Clear Button
             const btnAllClear = elt('input',{type: 'button', value: 'Allclear'});
             parent.appendChild(btnAllClear);
-            
-            btnAllClear.addEventListener('click', function(){
-                if(table.style.display == ''){
-                table.style.display="none";
-                } else {
-                    table.style.display = '';
-                }
-            });
-
 
             //table
             const table = elt('table');
@@ -80,12 +71,29 @@
                 table.appendChild(row);
             }
             
+            //table 선택시 색깔 넣기
             const Color = document.querySelector('input[type=color]');
-            const td = table.getElementsByTagName('td');
-            const tr = table.getElementsByTagName('tr');
+            const td = document.querySelectorAll('td');
             console.log(td);
-            console.log(tr);
 
+            function colorChange(e) {
+                if(e.target.style.backgroundColor === '') {
+               e.target.style.backgroundColor = Color.value;
+                } else {
+                    e.target.style.backgroundColor = '';
+                }
+            }
+
+            td.forEach(item => {
+                item.addEventListener('click', colorChange);
+            });
+
+            //버튼 누르면 td 색 빼기
+            btnAllClear.addEventListener('click', function() {
+                td.forEach(item => {
+                    item.style.backgroundColor = '';
+                })
+            })
 
         }
         
