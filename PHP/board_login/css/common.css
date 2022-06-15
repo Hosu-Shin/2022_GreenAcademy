@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'HS-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+    html, body { height: 100%; 
+    }
+
+a { text-decoration: none; 
+    color: #000;
+}
+
+a:hover {
+    color:#ccc;
+}
+
+#container { display: grid;
+    grid-template-rows: 100px 1fr; 
+    min-height: 100vh; 
+    position: relative;
+}
+
+#container::before {
+    content: "";
+    background: url(https://cdn.pixabay.com/photo/2022/04/09/05/23/tulip-7120784_960_720.jpg) no-repeat;
+    /* background-size: cover; */
+    background-size: 1920px 1080px;
+    opacity: 0.2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: -1;
+}
+    
+    #container > header { 
+        /* background-color: rgb(194, 191, 248);   */
+        display: flex;
+        flex: auto;
+        align-items: center; 
+        justify-content: center;
+        padding: 15px 20px; 
+        width: 100%;
+        height: 65px;
+        /* justify-content: space-between; */
+        font-family: 'GangwonEdu_OTFBoldA';
+        font-size: 22px;
+        color: #369;
+        flex-direction: column;
+        margin-top: 2px;
+    }
+    
+    
+.list {
+        font-size: 14px;
+        font-family: 'GangwonEdu_OTFBoldA';
+        height: 10px;
+    }
+
+.list a {
+    position: relative;
+    bottom: 10px;
+}
+    
+/* .list a:hover {
+            color:#ccc;
+        } */
+
+
+h1 { padding : 10px 40px;
+     font-family: 'HS-Regular';
+     font-size: 50px;
+}
+
+#table {
+    
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    
+}
+
+table { 
+    
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+thead th {
+    padding: 18px;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+    font-family: 'HS-Regular';
+    font-size: 25px;
+    
+}
+tbody td {
+    padding: 15px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-family: 'GowunDodum-Regular';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.num {
+    text-align: center;
+    margin: 10px;
+}
+.pageSelected { font-weight: bold; }
+.pageSelected > a {color: #036;}
+
+.circular__img {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+    
+}
+
+.circular__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+
+.wh40 {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 12px;
+    left: 5px;
+}
+
+mark {
+    background-color:#369;
+}
