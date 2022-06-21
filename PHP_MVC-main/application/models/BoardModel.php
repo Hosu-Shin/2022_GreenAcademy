@@ -27,4 +27,12 @@ class BoardModel extends Model {
         
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+
+    public function delBoard(&$param) {
+        $sql = "DELETE FROM t_board WHERE i_board = :i_board";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':i_board', $param["i_board"]);
+        
+        return $stmt->execute();
+    }
 }
