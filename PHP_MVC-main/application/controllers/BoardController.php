@@ -42,5 +42,21 @@
 
             return "redirect:/board/list";
         }
+        
+        public function mod() {
+            $i_board = $_GET["i_board"];
+
+            $model = new BoardModel();
+            $param = [
+                "i_board" => $i_board
+            ];
+            $this->addAttribute("data", $model->selBoard($param));
+
+            $this->addAttribute(_HEADER, $this->getView("template/header.php"));
+            $this->addAttribute(_MAIN, $this->getView("board/mod.php"));
+            $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
+
+            return "template/t1.php";
+        }
 
     }
