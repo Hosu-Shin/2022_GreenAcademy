@@ -15,25 +15,16 @@ class BoardModel extends Model {
     }
 
     public function selBoard(&$param) {
-        $sql = "SELECT i_board, title, ctnt FROM t_board WHERE i_board = :i_board";
+        $sql = "SELECT A.i_board, A.title, A.ctnt, A.writer, A.created_at, A.file,
+                B.nm 
+                FROM t_board A 
+                INNER JOIN t_user B
+                ON A.writer = B.i_user
+                WHERE A.i_board = :i_board";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':i_board', $param["i_board"]);
         $stmt->execute();
+        
         return $stmt->fetch(PDO::FETCH_OBJ);
-    }
-
-    public function delBoard(&$param) {
-        $sql = "DELETE FROM t_board WHERE i_board = :i_board";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':i_board', $param["i_board"]);
-        return $stmt->execute();
-    }
-
-    public function updBoard(&$param) {
-        $sql = "UPDATE t_board SET title = :title WHERE i_board = :i_board";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':title', $param["title"]);
-        $stmt->bindValue(':i_board', $param["i_board"]);
-        return $stmt->execute();
     }
 }
