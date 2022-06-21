@@ -6,6 +6,7 @@
     <div>
         <button id="btnDel" data-iboard="<?=$this->data->i_board?>">삭제</button>
     </div>
+    <div><a href="mod?i_board=<?=$this->data->i_board?>"><button>수정</button></a></div>
     <div>글 번호 : <?=$this->data->i_board?></div>
     <div>제목 : <?=$this->data->title?></div>
     <div>내용 : <?=$this->data->ctnt?></div>
