@@ -35,4 +35,30 @@ class BoardModel extends Model {
         
         return $stmt->execute();
     }
+
+    public function updBoard(&$param) {
+        $sql = "UPDATE t_board 
+                SET
+                title = :title,
+                ctnt = :ctnt
+                WHERE i_board = :i_board";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':i_board', $param["i_board"]);
+        $stmt->bindValue(':title', $param["title"]);
+        $stmt->bindValue(':ctnt', $param["ctnt"]);
+        return $stmt->execute();
+    }
+
+    public function insBoard(&$param) {
+        $sql = "INSERT INTO t_board
+                (writer, title, ctnt)
+                VALUES
+                (:writer, :title, :ctnt)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':writer', $param["writer"]);
+        $stmt->bindValue(':title', $param["title"]);
+        $stmt->bindValue(':ctnt', $param["ctnt"]);
+        
+        return $stmt->execute();
+    }
 }
