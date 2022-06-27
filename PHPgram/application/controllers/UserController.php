@@ -39,6 +39,7 @@ class UserController extends Controller {
                 }
                 $dbUser->pw = null;
                 $dbUser->regdt = null;
+                //null을 주는 이유 : memory 사용량을 줄이기 위해
                 $this->flash(_LOGINUSER, $dbUser);
                 return "redirect:/feed/index";
         
@@ -70,6 +71,13 @@ class UserController extends Controller {
 
                 return "redirect:signin";
         }
+    }
+
+    public function logout() {
+
+        $this->flash(_LOGINUSER);
+        
+        return "redirect:/user/signin";
     }
 
 }
