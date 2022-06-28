@@ -2,7 +2,7 @@
     <div id="globalConst">
         <div class="d-flex flex-column flex-md-row align-items-center">
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
-                <a href="/feed/index.php">Home</a>
+                <a title="Instagram" href="/feed/index"><img width="200" alt="Instagram logo" src="/static/img/profile/Instagram_logo.svg"></a>
             </div>
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
             </div>
