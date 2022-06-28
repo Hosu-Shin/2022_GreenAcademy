@@ -39,7 +39,7 @@
 
                     const fData = new FormData();
                     for(let i=0; i<files.length; i++) {
-                        fData.append('files[]', files[i]);
+                        fData.append('imgs[]', files[i]);
                     }
                     fData.append('ctnt', body.querySelector('textarea').value);
                     fData.append('location', body.querySelector('input[type=text]').value);
