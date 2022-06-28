@@ -24,28 +24,37 @@ class FeedController extends Controller {
             $param = [
                 "location" => $_POST["location"],
                 "ctnt" => $_POST["ctnt"],
-                "iuser" => $iuser
+                "iuser" => $iuser,
             ];
             $ifeed =  $this->model->insFeed($param);
 
-            foreach($_FILES["imgs"]["name"] as $key => $value) {
-                //확장자 얻어오기
-                $file_name = explode(".", $value);
-                
-                //배열의 마지막 인덱스 값 가져 오기 
-                //$file_name[count($file_name)-1];
-                $ext = end($file_name);
 
-                $saveDirectory = _IMG_PATH . "/profile/" . $iuser;
+            foreach($_FILES["imgs"]["name"] as $key => $originFileNm) {
+            //확장자 얻어오기
+                //$file_name = explode(".", $originFileNm);
+                
+            //배열의 마지막 인덱스 값 가져 오기 
+                //$file_name[count($file_name)-1];
+                //$ext = end($file_name);
+
+                $saveDirectory = _IMG_PATH . "/feed/" . $ifeed;
                 if(!is_dir($saveDirectory)) {
                     mkdir($saveDirectory, 0777, true);
                 }
                 $tempName = $_FILES['imgs']['tmp_name'][$key];
-                move_uploaded_file($tempName, $saveDirectory . "/test." . $ext); 
+                $randomFileNm = getRandomFile($originFileNm);
+                move_uploaded_file($tempName, $saveDirectory . "/" . $randomFileNm);
+
+                $paramImg = [
+                    "ifeed" => $ifeed,
+                    "img" => $randomFileNm
+                ];
+                
+                $this->model->insFeedImg($paramImg);
                 
             }
 
-            return "redirect:/feed/index";
+            return ["result" => $ifeed];
                
         }
     }
