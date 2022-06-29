@@ -2,7 +2,7 @@
     <div id="globalConst">
         <div class="d-flex flex-column flex-md-row align-items-center">
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
-                <a title="Instagram" href="/feed/index"><img width="200" alt="Instagram logo" src="/static/img/profile/Instagram_logo.svg"></a>
+                <a title="Instagram" href="/feed/index"><img class="w150" alt="Instagram logo" src="/static/img/profile/Instagram_logo.svg"></a>
             </div>
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
             </div>
@@ -31,7 +31,7 @@
                             <div class="circleimg h30 w30">
                                 <!-- <img src="/static/img/profile/<?= $_SESSION[_LOGINUSER]->iuser?>/<?=$_SESSION[_LOGINUSER]->mainimg?>" onerror="this.onerror=null; this.src='/static/img/profile/profile.svg'"> alt=""> -->
                                                                                                                                     <!-- this는 img태그 / on이 붙으면 event -->
-                                <img src="/static/img/profile/<?= getMainImgSrc()?>" onerror="this.onerror=null; this.src='/static/img/profile/profile.svg'">  alt="">
+                                <img src="/static/img/profile/<?= getMainImgSrc()?>" onerror="this.onerror=null; this.src='/static/img/profile/uniCorn.png'">  alt="">
                             </div>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navDropdiwnMenuLink">
