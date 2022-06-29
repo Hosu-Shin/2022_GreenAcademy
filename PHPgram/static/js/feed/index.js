@@ -49,7 +49,7 @@
                         body: fData
                     }).then(res => res.json())
                         .then(myJson => {
-
+                            console.log(myJson);
                             const closeBtn = modal.querySelector('.btn-close');
                             closeBtn.click();
 
@@ -74,4 +74,43 @@
             body.appendChild(selFromComBtn);
         });
     }
+
+
+
+    const feedObj = {
+        limit: 20,
+        itemLength: 0,
+        currentPage: 1,
+        loadingElem: document.querySelector('.loading'),
+
+    //Axis통신
+        getFeedList: function() {
+            this.showLoading();
+            //setTimeout(() => {this.hideLoading();}, 1000);
+            const param = {
+                page:this.currentPage++
+            }
+            fetch('/feed/rest' + encodeQueryString(param))
+            .then(res => res.json())
+            .then(list => {
+                console.log(list);
+                this.hideLoading();
+            })
+            .catch(e => { //에러 확인
+                console.error(e);
+                this.hideLoading();
+            });
+        },
+
+        showLoading: function() { this.loadingElem.classList.remove('d-none'); },
+        hideLoading: function() { this.loadingElem.classList.add('d-none'); },
+    }
+    feedObj.getFeedList();
+
+
+
+
+
+
+
 })();
