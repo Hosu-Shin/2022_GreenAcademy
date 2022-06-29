@@ -57,5 +57,13 @@
             $stmt->bindValue(":feedItemCnt", _FEED_ITEM_CNT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }           
+        }
+        
+        public function selFeedImgList($param) {
+            $sql = "SELECT img FROM t_feed_img WHERE ifeed = :ifeed";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":ifeed", $param -> ifeed);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
     }
