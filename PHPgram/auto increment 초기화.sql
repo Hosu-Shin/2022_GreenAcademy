@@ -1,0 +1,3 @@
+ALTER TABLE t_feed AUTO_INCREMENT=1;
+SET @COUNT = 0;
+UPDATE t_feed SET ifeed = @COUNT:=@COUNT+1;
