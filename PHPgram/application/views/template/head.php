@@ -7,7 +7,7 @@
     <?php 
         if(isset($this->css)) {
             foreach($this->css as $item) {
-                $href = strpos($item, "http") === 0 ? $item : "/static/css/{$item}.css";
+                $href = strpos($item, "http") === 0 ? $item : "/static/css/{$item}.css";    // 0은 http로 시작한다는 뜻, 없으면 음수가 뜬다
                 echo "<link rel='stylesheet' href='{$href}'>
                 ";
             }

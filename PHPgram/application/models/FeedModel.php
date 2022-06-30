@@ -66,4 +66,34 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        //----------------------------Fav-------------------------------
+        public function insFeedFav(&$param) {
+            $sql = "INSERT INTO t_feed_fav
+                    (ifeed, iuser)
+                    VALUES
+                    (:ifeed, :iuser)
+                    ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":ifeed", $param["ifeed"]);
+            $stmt->bindValue(":iuser", $param["iuser"]);
+            $stmt->execute();
+
+            return $stmt->rowCount();
+            //rowCount : 영향 받은 행 수 (0, 1)
+        }
+
+        public function delFeedFav(&$param) {
+            $sql = "DELETE FROM t_feed_fav
+                    WHERE ifeed = :ifeed
+                    AND iuser = :iuser";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":ifeed", $param["ifeed"]);
+            $stmt->bindValue(":iuser", $param["iuser"]);
+            $stmt->execute();
+
+            return $stmt->rowCount();
+        }
+
+
     }

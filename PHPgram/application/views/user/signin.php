@@ -11,7 +11,7 @@
                 }
             ?>
         </div>
-        <!-- post방식은 무조건 form 태그가 필요하다
+        <!-- post방식은 무조건 form 태그의 method가 post일 때
             나머지는 모두 get방식(주소창에 직접 입력, 주소차에 쿼리스트링 붙은 거, 클릭, a태그 등으로 화면 이동 하는거) -->
         <form action="signin" method="post">
             <div><input type="email" name="email" placeholder="email"
