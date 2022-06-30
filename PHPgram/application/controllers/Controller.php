@@ -5,7 +5,8 @@ class Controller {
     protected $model;
     private static $needLoginUrlArr = [
         //로그인 상태가 아닐때 주소창에 feed 들어가면 권한이 없음으로 뜸
-        "feed"
+        "feed",
+        "user/feedwin"
     ];
 
     public function __construct($action, $model) {    
