@@ -1,0 +1,20 @@
+:root {
+    --upload-color: #405de6;
+    --delete-color: #fd1d1d;
+}
+
+.upColor { color: var(--upload-color); }
+.delColor { color: var(--delete-color); }
+
+.w-30 { width: 360px; }
+
+.modal-title { padding: 1rem; }
+.modal-content { border-radius: .7rem;}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 450px;        
+    }
+}
+
+._modal_item { display: flex; flex-wrap: wrap; justify-content: center; flex-shrink: 0; align-items: center; padding: 0.75rem;  }
+._modal_item:not(:last-child) { border-bottom: 1px solid #dee2e6; }

@@ -103,4 +103,5 @@ class FeedController extends Controller {
                 return [_RESULT => $this->model->delFeedFav($param)];
         }
     }
+
 }

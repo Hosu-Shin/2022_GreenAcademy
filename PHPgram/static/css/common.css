@@ -58,3 +58,5 @@ table { border-collapse: collapse; border-spacing: 0; }
 .profile { object-fit: cover; border-radius: 50%; }
 
 .scroll_smooth { scroll-behavior: smooth; }
+.text_center { text-align: center; }
+

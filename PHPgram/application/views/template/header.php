@@ -37,7 +37,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navDropdiwnMenuLink">
                                 <li>
-                                    <a href="/user/profile?i_user=???" class="dropdown-item">
+                                    <a href="/user/feedwin?iuser=<?=getIuser()?>" class="dropdown-item">
                                         <span>
                                             <svg aria-label="프로필" class="_8-yf5 " color="#262626" fill="#262626" height="16" role="img" viewBox="0 0 24 24" width="16">
                                                 <circle cx="12.004" cy="12.004" fill="none" r="10.5" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></circle>
