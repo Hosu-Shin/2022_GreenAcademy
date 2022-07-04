@@ -2,6 +2,7 @@
 namespace application\controllers;
 
 class Controller {    
+    protected $ctx;
     protected $model;
     private static $needLoginUrlArr = [
         //로그인 상태가 아닐때 주소창에 feed 들어가면 권한이 없음으로 뜸
@@ -38,6 +39,9 @@ class Controller {
         }        
     }
     private function chkLoginUrl() {
+
+    }
+    protected function getModel($key) {
 
     }
     

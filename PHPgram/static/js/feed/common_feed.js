@@ -4,7 +4,23 @@ const feedObj = {
     currentPage: 1,
     swiper: null,
     loadingElem: document.querySelector('.loading'),
-    containerElem: document.querySelector('#item_container'),   
+    containerElem: document.querySelector('#item_container'),
+
+    makeCmtItem: function(item) {
+        const divCmtItemContainer = document.createElement('div');
+        divCmtItemContainer.className = 'd-flex flex-row align-items-center mb-2';
+        
+        let src = '/static/img/profile/' + (item.writerimg ? `${item.iuser}/${item.writerimg}` : '/static/img/profile/uniCorn.png');
+        divCmtItemContainer.innerHTML = `
+                                    <div class="circleimg h24 w24">
+                                        <img src="${src}" class="profile w24 pointer">
+                                    </div>
+                                    <div class="d-flex flex-row>
+                                        <div class="pointer  me-2">${item.writer} (${getDateTimeInfo(item.regdt)})</div>
+                                        <div>${item.cmt}</div>
+                                    </div>
+                                    `;
+    },
     
     makeFeedList: function(list) {
         if(list.length !== 0) {
@@ -149,18 +165,43 @@ const feedObj = {
 
         if(item.favCnt > 0 ) { divFav.classList.remove('d-none'); }
 
-        if(item.ctnt !== null ) {
+        if(item.ctnt !== null && item.ctnt !== '' ) {
             const divCtnt = document.createElement('div');
             divContainer.appendChild(divCtnt);
             divCtnt.innerText = item.ctnt;
             divCtnt.className = 'itemCtnt p-3';
         }
 
+
+    //댓글 기능
         const divCmtList = document.createElement('div');
         divContainer.appendChild(divCmtList);
-
+        divCmtList.className = 'ms-3';
+        
         const divCmt = document.createElement('div');
         divContainer.appendChild(divCmt);
+    
+
+    if(item.cmt) {
+
+        const divCmtItem = this.makeCmtItem(item.cmt);
+        divCmtList.appendChild(divCmtItem);
+
+        if(item.cmt.ismore === 1) {
+            const divMoreCmt = document.createElement('div');
+            divCmt.appendChild(divMoreCmt);
+            divMoreCmt.className = 'ms-3';
+
+            const spanMoreCmt = document.createElement('span');
+            divMoreCmt.appendChild(spanMoreCmt);
+            spanMoreCmt.className = 'pointer';
+            spanMoreCmt.innerText = '댓글 더보기...';
+            spanMoreCmt.addEventListener('click', e => {
+
+            });
+        }
+    }
+
         const divCmtForm = document.createElement('div');
         divCmtForm.className = 'd-flex flex-row';
         divCmt.appendChild(divCmtForm);
@@ -170,6 +211,28 @@ const feedObj = {
                                 <button type="button" class="btn btn-outline-primary">등록</button>
                                 `;
 
+        const inputCmt = divCmtForm.querySelector('input');
+        const btnCmtReg = divCmtForm.querySelector('button');
+        btnCmtReg.addEventListener('click', e => {
+            
+            const param = {
+                ifeed: item.ifeed,
+                cmt: inputCmt.value
+            };
+            
+            fetch('/feedcmt/index', {
+                method: 'POST',
+                body: JSON.stringify(param)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.result) {
+                    console.log(inputCmt.value);
+                    inputCmt.value = '';
+                    //댓글 공간에 댓글 내용 추가
+                }
+            })
+        });
 
 
         return divContainer;

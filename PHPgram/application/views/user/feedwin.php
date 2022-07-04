@@ -1,3 +1,5 @@
+<div id="gData" data-toiuser="<?= $this->data->iuser ?>"></div>
+
 <div class="d-flex flex-column align-items-center">
     <div class="size_box_100"></div>
     <div class="w100p_mw614" id="profileModal">
@@ -9,7 +11,7 @@
                 </div>
             <div class="flex-grow-1 d-flex flex-column justify-content-evenly">
                 <div><?= $this->data->email?></div>
-                <div>
+                <!--<div>
                     <?php
                         $youMe = $this->data->youMe;
                         $meYou = $this->data->meYou;
@@ -23,8 +25,11 @@
                     <?php } else if($youMe === 1 && $meYou === 0) { ?>
                         <button type="button" id="btnFollow" data-follow="0" class="btn btn-primary"">맞팔로우 하기</button>
                     <?php } ?>
+                    </div>
+                -->
             <!-- 강사님 풀이 -->
-                    <div>
+                    
+                <div>
                     <?php 
                         if($this->data->iuser === getIuser()) {
                             echo '<button type="button" id="btnModProfile" class="btn btn-outline-secondary">프로필 수정</button>';
@@ -34,27 +39,28 @@
                             $txt = "팔로우";
 
                             if($this->data->meYou === 1) {
-                                $data_follow = 0;
+                                $data_follow = 1;
                                 $cls = "btn-outline-secondary";
                                 $txt = "팔로우 취소";
                             } else if($this->data->youMe === 1 && $this->data->meYou === 0) {
                                 $txt = "맞팔로우 하기";
                             }
-                            echo "<button type = 'button' id='btnFollow' data-follow='{$data_follow}' class='btn {$cls}'>{$txt}</button>";
+                            echo "<button type='button' id='btnFollow' data-youme='{$this->data->youMe}' data-follow='{$data_follow}' class='btn {$cls}'>{$txt}</button>";
                         }
                     ?>
-                    </div>
                 </div>
                 <div class="d-flex flex-row">
-                    <div class="flex-grow-1 me-3">게시물<span>5</span></div>
-                    <div class="flex-grow-1 me-3">팔로워<span>100</span></div>
-                    <div class="flex-grow-1">팔로우<span>100</span></div>
+                    <div class="flex-grow-1 me-3">게시물<span class="bold"><?= $this->data->feedCnt ?></span></div>
+                    <div class="flex-grow-1 me-3">팔로워<span id="follower" data-follower="<?= $this->data->followerCnt ?>" class="bold"><?= $this->data->followerCnt ?></span></div>
+                    <div class="flex-grow-1">팔로잉<span class="bold"><?= $this->data->followCnt ?></span></div>
                 </div>
                 <div class="bold"><?= $this->data->nm?></div>
                 <div><?= $this->data->cmt?></div>
             </div>
         </div>
+        <div id="item_container"></div>
     </div>
+    <div class="loading d-none"><img src="/static/img/loading.gif"></div>
 </div>
 
 <!-- //팔로우 기능 -->
