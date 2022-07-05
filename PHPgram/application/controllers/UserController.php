@@ -93,7 +93,7 @@ class UserController extends Controller {
 
     public function feed() {
         if(getMethod() === _GET) {
-            $iuser = isset($_GET["iuser"]) ? intval($_GET["iuser"]) : 0;
+            // $iuser = isset($_GET["iuser"]) ? intval($_GET["iuser"]) : 0;
             $page = 1;
                 if(isset($_GET["page"])) {
                     $page = intval($_GET["page"]);
@@ -101,11 +101,13 @@ class UserController extends Controller {
                 $startIdx = ($page-1) * _FEED_ITEM_CNT;
                 $param = [
                     "startIdx" => $startIdx,
-                    "iuser" => $iuser
+                    "toiuser" => $_GET["iuser"],
+                    "loginiuser" => getIuser()
                 ];
             $list = $this->model->selFeedList($param);
             foreach($list as $item) {
-                $item->imgList = Application::getModel("feed")->selFeedImgList($item);
+                $param2 = ["ifeed" => $item->ifeed];
+                $item->imgList = Application::getModel("feed")->selFeedImgList($param2);
             }
             return $list;
         }

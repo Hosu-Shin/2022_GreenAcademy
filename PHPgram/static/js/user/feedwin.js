@@ -25,16 +25,21 @@ getFeedList();
 
 (function() {
     const btnFollow = document.querySelector('#btnFollow');
-    const gData = document.querySelector('#gData');
+    const lData = document.querySelector('#lData');
+    const myFeed = document.querySelector('#myFeed');
     const follower = document.querySelector('#follower');
-    let followCnt = follower.dataset.follower;
+    let followCnt = parseInt(follower.dataset.follower);
+    let allMyFeed = parseInt(myFeed.dataset.myFeed);
+
+    console.log('total :' + myFeed.dataset.myFeed);
 
     if(btnFollow) {
         btnFollow.addEventListener('click', function() {
             
         //팔로우 할 유저의 iuser값 구하기
             const param = {
-                toiuser: parseInt(gData.dataset.toiuser)
+                // toiuser: parseInt(lData.dataset.toiuser)
+                toiuser: url.searchParams.get('iuser')
             };
             console.log(param);
         
@@ -51,8 +56,8 @@ getFeedList();
                 .then(res => {
                     console.log('res : ' + res);
                     if(res.result) {
-                        followCnt -= 1;
-                        follower.innerText = followCnt;
+                    followCnt -= 1;
+                    follower.innerText = followCnt;
                     btnFollow.dataset.follow = '0';
                     btnFollow.classList.remove('btn-outline-secondary');
                     btnFollow.classList.add('btn-primary');

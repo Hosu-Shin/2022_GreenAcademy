@@ -56,8 +56,11 @@ class FeedController extends Controller {
                     $this->model->insFeedImg($paramImg);
                     
                 }
+                $param2 = [ "ifeed" => $ifeed ];
+                $data = $this->model->selFeedAfterReg($param2);
+                $data->imgList = $this->model->selFeedImgList($param2);
 
-                return ["result" => 1];
+                return $data;
 
             case _GET:
                 $page = 1;
@@ -71,8 +74,8 @@ class FeedController extends Controller {
                 ];
                 $list =  $this->model->selFeedList($param);
                 foreach($list as $item) {
-                    $item->imgList = $this->model->selFeedImgList($item);
                     $param2 = [ "ifeed" => $item->ifeed ];
+                    $item->imgList = $this->model->selFeedImgList($param2);
                     $item->cmt = Application::getModel("feedcmt")->selFeedCmt($param2);
                 }
                 return $list;
