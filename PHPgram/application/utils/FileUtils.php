@@ -1,4 +1,8 @@
 <?php
+    function delFile($path) {
+        
+    }
+
     function getExt($fileName) {
     //확장자만 뽑아오기
         

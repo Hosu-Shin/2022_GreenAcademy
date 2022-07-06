@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($this->title) ? $this->title : _SERVICE_NM ?></title>
     <link rel="stylesheet" href="/static/css/common.css">
+    <link href="../../../static/img/php_logo.png" rel="shortcut icon" type="image/x-icon">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script defer src="/static/js/common.js"></script>

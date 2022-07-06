@@ -6,7 +6,7 @@
         <div class="d-flex flex-row">            
                 <div class="d-flex flex-column justify-content-center me-3">
                     <div class="circleimg h150 w150 pointer feedwin">
-                        <img data-bs-toggle="modal" data-bs-target="#newProfileModal" src='/static/img/profile/<?=$this->data->iuser?>/<?=$this->data->mainimg?>' onerror='this.error=null; this.src="/static/img/profile/uniCorn.png"'>
+                        <img class="profileimg" data-bs-toggle="modal" data-bs-target="#newProfileModal" src='/static/img/profile/<?=$this->data->iuser?>/<?=$this->data->mainimg?>' onerror='this.error=null; this.src="/static/img/profile/uniCorn.png"'>
                     </div>
                 </div>
             <div class="flex-grow-1 d-flex flex-column justify-content-evenly">
@@ -50,7 +50,7 @@
                     ?>
                 </div>
                 <div class="d-flex flex-row">
-                    <div class="flex-grow-1 me-3">게시물<span id="myFeed" data-myFeed="<?= $this->data->feedCnt ?>" class="bold"><?= $this->data->feedCnt ?></span></div>
+                    <div class="flex-grow-1 me-3">게시물<span id="myfeed" data-myFeed="<?= $this->data->feedCnt ?>" class="bold"><?= $this->data->feedCnt ?></span></div>
                     <div class="flex-grow-1 me-3">팔로워<span id="follower" data-follower="<?= $this->data->followerCnt ?>" class="bold"><?= $this->data->followerCnt ?></span></div>
                     <div class="flex-grow-1">팔로잉<span class="bold"><?= $this->data->followCnt ?></span></div>
                 </div>
@@ -81,6 +81,7 @@
 ?> -->
 
 <!-- 프로필 사진 바꾸기 -->
+<?php if($this->data->iuser === getIuser()) { ?>
 <div class="modal fade" id="newProfileModal" tabindex="-1" aria-labelledby="newProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centerd modal-xl">
         <div class="modal-content rounded-3 w-30" id="newProfileModalContent">
@@ -90,16 +91,19 @@
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body p-0" id="id-modal-body">
-                    <div class="text-sm-center p-3 upColor pointer border-bottom" >사진 업로드</div>
-                    <div class="text-sm-center p-3 delColor pointer" >현재 사진 삭제</div>
+                    <div id="" class="c_primary-button text-sm-center p-3 upColor pointer border-bottom" >사진 업로드</div>
+                <?php if(isset($this->data->mainimg)) { ?>
+                    <div id="DelCurrentProfilePic" class="c_error text-sm-center p-3 delColor pointer" >현재 사진 삭제</div>
+                <?php } ?>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <a class="btn" id="modalY" href="#">취소</a>
+                    <a class="pointer" id="btnProfileImgModalClose" data-bs-dismiss="modal">취소</a>
                 </div>
             </div>
-            <form class="d-none">
+            <!-- <form class="d-none">
                 <input type="file" accept="image/*" name="imgs" multiple>
-            </form>
+            </form> -->
         <div>
     </div>
 </div>
+<?php } ?>

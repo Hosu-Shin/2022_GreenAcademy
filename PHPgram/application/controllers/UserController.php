@@ -108,6 +108,7 @@ class UserController extends Controller {
             foreach($list as $item) {
                 $param2 = ["ifeed" => $item->ifeed];
                 $item->imgList = Application::getModel("feed")->selFeedImgList($param2);
+                $item->cmt = Application::getModel("feedcmt")->selFeedCmt($param2);
             }
             return $list;
         }
@@ -162,5 +163,39 @@ class UserController extends Controller {
         }
     }
     
+
+//프로필 사진 삭제
+    public function profile() {
+        switch(getMethod()) {
+            case _POST:
+                foreach ($_FILES['imgs']['name'] as $key => $originFileNm) {
+                    $saveDirectory = _IMG_PATH . '/profile/' . getIuser();
+
+                    $tempName = $_FILES['imgs']['tmp_name'][$key];
+                    $randomFileNm = getRandomFile($originFileNm);
+                    if(move_uploaded_file($tempName, $saveDirectory . '/' . $randomFileNm)) {
+                        $paramImg = ['mainimg' => $randomFileNm, 'iuser' => getIuser()];
+                        $this->model->updUser($paramImg);
+                        getLoginUser()->mainimg = $randomFileNm;
+                    }
+                }
+                return [_RESULT => $randomFileNm];
+                
+            case _DELETE:
+                $loginUser = getLoginUser();
+                if($loginUser) {
+                    $path = "static/img/profile/{$loginUser->iuser}/{$loginUser->mainimg}";
+                    if(file_exists($path) && unlink($path)) {
+                        $param = [ "iuser" => $loginUser->iuser, "delMainImg" => 1];
+                        if($this->model->updUser($param)) {
+                            $loginUser->mainimg = null;
+                            return [_RESULT => 1];
+                        }
+                    }
+                }
+                return [_RESULT => 0];
+        }
+    }
+
 
 }
