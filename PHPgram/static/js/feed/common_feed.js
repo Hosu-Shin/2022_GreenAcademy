@@ -3,6 +3,42 @@ const feedObj = {
     itemLength: 0,
     currentPage: 1,
     swiper: null,
+    getfeedUrl: '',
+    iuser: 0,
+    setScrollInfinity: function() {
+    //무한 스크롤(Infinite Scroll) 간단 작업
+        window.addEventListener('scroll', e => {
+            if(this.isLoading()) {return;}
+
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement   //자바스크립트 구조 분해 할당
+        
+            if( scrollTop + clientHeight >= scrollHeight - 10 && this.itemLength === this.limit ) {
+                this.getFeedList();
+            }
+        }, { passive: true });
+    },
+    getFeedList: function() {
+        this.itemLength = 0;
+        this.showLoading();            
+        const param = {
+            page: this.currentPage++,
+            iuser: this.iuser,
+        }
+        fetch(this.getfeedUrl + encodeQueryString(param))
+        .then(res => res.json())
+        .then(list => {       
+            this.itemLength = list.length;
+            this.makeFeedList(list);                
+        })
+        .catch(e => {
+            console.error(e);
+            this.hideLoading();
+        });
+    },
     refreshSwipe: function() {
         if(this.swiper !== null) { this.swiper = null; }
             this.swiper = new Swiper('.swiper', {
@@ -43,7 +79,7 @@ const feedObj = {
         let src = '/static/img/profile/' + (item.writerimg ? `${item.iuser}/${item.writerimg}` : 'uniCorn.png');
         divCmtItemContainer.innerHTML = `
                                     <div class="circleimg h24 w24 me-1 cmtwin">
-                                        <img src="${src}" class="profile w24 pointer">
+                                        <img src="${src}" class="profile w24 pointer profileimg">
                                     </div>
                                     <div class="d-flex flex-row cmtwin">
                                         <div class="pointer me-2 nickNm bold">${item.writer}</div>
@@ -95,7 +131,7 @@ const feedObj = {
 
         const regDtInfo = getDateTimeInfo(item.regdt);
         divTop.className = 'd-flex flex-row ps-3 pe-3';
-        const writerImg = `<img src='/static/img/profile/${item.iuser}/${item.mainimg}'
+        const writerImg = `<img class="profileimg" src='/static/img/profile/${item.iuser}/${item.mainimg}'
                             onerror='this.error=null;
                             this.src="/static/img/profile/uniCorn.png"'>`;
         
@@ -151,13 +187,26 @@ const feedObj = {
         heartIcon.className = 'fa-heart pointer rem1_5 me-3';
         heartIcon.classList.add(item.isFav === 1 ? 'fas' : 'far');
     
-        heartIcon.addEventListener('click', e => {
+        heartIcon.addEventListener('click', (e) => {
             //item.isFav = 1 - item.isFav;
-
+        
+        // 좋아요 숫자 실시간 반영
             let method = 'POST';
+            if( item.isFav === 0 ) {
+                divFav.classList.remove('d-none');
+
+                item.favCnt = item.favCnt + 1;
+                spanFavCnt.innerHTML = `좋아요 ${item.favCnt}개`;
+            }
             if( item.isFav === 1 ) {
                 //delete (1은 0으로 바꿔줘야 함)
                 method = 'DELETE';
+                divFav.classList.remove('d-none');
+                item.favCnt = item.favCnt - 1;
+                spanFavCnt.innerHTML = `좋아요 ${item.favCnt}개`;
+                if( item.favCnt === 0 ) {
+                    divFav.classList.add('d-none');
+                }
             }
 
             fetch(`/feed/fav/${item.ifeed}`, {
@@ -169,9 +218,17 @@ const feedObj = {
                         if(item.isFav === 0) {
                             heartIcon.classList.remove('fas');
                             heartIcon.classList.add('far');
+                        //좋아요 바로 반영 (강사님 풀이)
+                            // item.favCnt++;
+                            // if(item.favCnt === 0 ) {
+                            //     divFav.classList.add('d-none');
+                            // }
                         } else {
                             heartIcon.classList.remove('far');
                             heartIcon.classList.add('fas');
+                            // item.favCnt++;
+                            // divFav.classList.remove('d-none')
+                            
                         }
                     } else {
                         alert('좋아요를 할 수 없습니다.');
@@ -295,6 +352,7 @@ const feedObj = {
 
     showLoading: function() { this.loadingElem.classList.remove('d-none'); },
     hideLoading: function() { this.loadingElem.classList.add('d-none'); },
+    isLoading: function() { return !this.loadingElem.classList.contains('d-none'); }
 }
 
 //iuser의 feed로 이동
@@ -340,6 +398,8 @@ function moveToFeedWin(iuser) {
 
             //공유하기 버튼에 이벤트 걸기
                 const shareBtnElem = body.querySelector('button');
+                
+
                 shareBtnElem.addEventListener('click', function() {
                     const files = frmElem.imgs.files;
 
@@ -360,15 +420,21 @@ function moveToFeedWin(iuser) {
                             if(myJson) {                                
                                 btnClose.click();
 
-                                // const lData = document.querySelector('#lData');
-                                // const gData = document.querySelector('#gData');
-                                // if(lData && lData.dataset.toiuser !== gData.dataset.loginiuser) { return; }
+                                const lData = document.querySelector('#lData');
+                                const gData = document.querySelector('#gData');
+                                if(lData && lData.dataset.toiuser !== gData.dataset.loginiuser) { return; }
                                 // 남의 feedWin이 아니라면 화면에 등록!!!
 
                             //화면에 등록 (글 작성하면 새로고침 안해도 바로 화면에 보이도록 만들기)
                                 const feedItem = feedObj.makeFeedItem(myJson);
                                 feedObj.containerElem.prepend(feedItem);
                                 feedObj.refreshSwipe();
+                                window.scrollTo(0, 0);
+                            
+                            //공유하기 클릭하면 게시물 숫자 바로 반영
+                                const myfeed = document.querySelector('#myfeed');
+                                let allMyFeed = parseInt(myfeed.dataset.myfeed);
+                                myfeed.innerHTML = allMyFeed + 1;
 
                             }
                         });
