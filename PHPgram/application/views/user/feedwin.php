@@ -107,3 +107,9 @@
     </div>
 </div>
 <?php } ?>
+<!-- 라이트 박스 -->
+<div id = "lightbox">
+    <img src=""
+        id = "lightboxImage">
+</div>
+

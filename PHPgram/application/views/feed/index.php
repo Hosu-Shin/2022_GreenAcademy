@@ -5,3 +5,8 @@
     </div>
     <div class="loading d-none"><img src="/static/img/loading.gif" alt=""></div>
 </div>
+
+<!-- <div id = "lightbox">
+    <img src=""
+        id = "lightboxImage">
+</div> -->
