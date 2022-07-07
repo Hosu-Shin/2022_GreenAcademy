@@ -121,6 +121,7 @@ const feedObj = {
         this.refreshSwipe();
         this.hideLoading();
     },
+
     makeFeedItem: function(item) {
         console.log(item);
         const divContainer = document.createElement('div');
@@ -173,9 +174,48 @@ const feedObj = {
 
             const img = document.createElement('img');
                 divSwiperSlide.appendChild(img);
-                img.className = 'w100p_mw614';
+                img.className = 'w100p_mw614 pic';
                 img.src = `/static/img/feed/${item.ifeed}/${imgObj.img}`;
+
+                //라이트 박스
+                // const lightbox = document.querySelector('#lightbox');
+                // const lightboxImage = lightbox.querySelector('#lightboxImage');
+                
+                // function showLightbox() {
+                //     const bigLocation = this.src;
+                //     lightboxImage.setAttribute('src', bigLocation);
+                //     lightbox.style.display = 'flex';
+                // }
+                
+                // const rowPic = document.querySelectorAll('.pic');
+            
+                // rowPic.forEach(item => {
+                //     item.addEventListener('click', showLightbox);
+                // });
+         
+                // lightbox.addEventListener('click', function() {
+                //     this.style.display = 'none';
+                // });
+        
+            img.addEventListener('click', () => {
+                const imgBox = document.createElement('div');
+                imgBox.classList = 'modal modal-img d-flex pointer imgBox';
+                imgBox.tabIndex = '2';
+                imgBox.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content img-modal-content">
+                        <img src="${img.src}">
+                    </div>
+                    </div>`;
+                const main = document.querySelector('main');
+                main.appendChild(imgBox);
+                imgBox.addEventListener('click', () => {
+                    imgBox.remove();
+                });
+            });
         });
+
+
 
     //좋아요 기능
         const divBtns = document.createElement('div');

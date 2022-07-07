@@ -39,6 +39,21 @@ table { border-collapse: collapse; border-spacing: 0; }
 .header { border-bottom: 1px solid #dfdfdf; position: fixed; top:0; width: 100%; background-color: #fff; z-index: 10; }
 .h-full { height: 100%; }
 
+#lightbox { 
+    height: 100%; width: 100%;
+    background-color: #00000066; 
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    }
+#lightbox > img { 
+    border: 2px solid rgb(6, 160, 147);
+    cursor: pointer;
+    }
 .loading { align-items: center; display:flex; height: 100%; justify-content: center; width: 100%; position: fixed; z-index: 100; left: 0; top: 0;}
 .loading img { width: 80px; }
 
