@@ -298,6 +298,9 @@ const feedObj = {
                             <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
                             </svg>
                             `;
+        divDm.addEventListener('click', e => {
+            location.href = `/dm/index?oppoiuser=${item.iuser}`;
+        });
 
     //좋아요 개수
         const divFav = document.createElement('div');
