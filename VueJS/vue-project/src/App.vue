@@ -5,7 +5,7 @@
     <TodoList :propsItems="todoItems" @childRemoveTodo="removeTodo"></TodoList>
     <TodoFooter @childClearAllTodo="clearTodo"></TodoFooter>
   </div>
-  <AlertModal :show="modalShow" header="알림창" body="내용을 입력해 주세요." @close="closeModal"></AlertModal>
+  <AlertModal :show="modalShow" header="알림창" body="내용을 입력해 주세요." @close="modalShow = false"></AlertModal>
 </template>
 
 <script>
@@ -27,11 +27,11 @@ export default {
   methods: {
     //빈칸 입력 시 모달창 띄우기
     openModal() {
-      this.modalShow= true
+      this.modalShow= true;
     },
-    closeModal() {
-      this.modalShow= false     
-    },
+    // closeModal() {
+    //   this.modalShow= false;    
+    // },
     
     addTodo(todoItem) { //리스트 추가 
       //localStorage.setItem(todoItem, todoItem);
