@@ -6,7 +6,7 @@ export default {
             key: '0beecfdd3a0eba0dbb97b9a5772fbf18',
             baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
             boxOfficeByDay: 'boxoffice/searchDailyBoxOfficeList.json',
-            boxOfficeByWeek: 'boxoffice/searchWeeklyBoxOfficeList.json'
+            boxOfficeByWeek: 'boxoffice/searchWeeklyBoxOfficeList.json' //주간 박스오피스
         }
     },
     methods: {
@@ -31,6 +31,7 @@ export default {
             console.log(d.toDateString());
             return d.toISOString().split('T')[0];
         },
+    //주간 박스 오피스
         async getBoxOfficeByWeek(targetDt) {
             const parameter = {
                     key: this.key,
@@ -39,12 +40,6 @@ export default {
                 }
             const url = this.baseUrl + this.boxOfficeByWeek;
             return await this.$api(url, parameter);
-        },
-        getSplitDate(targetDt) {
-            const date = new Date(targetDt);
-            console.log(date.toDateString());
-        }
-        
-        
+        }, 
     }
 }
