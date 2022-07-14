@@ -3,9 +3,10 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            key: '1a0a7ecf96ad3364d8de70e91560767a',
+            key: '0beecfdd3a0eba0dbb97b9a5772fbf18',
             baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
             boxOfficeByDay: 'boxoffice/searchDailyBoxOfficeList.json',
+            boxOfficeByWeek: 'boxoffice/searchWeeklyBoxOfficeList.json'
         }
     },
     methods: {
@@ -27,7 +28,23 @@ export default {
         },
         getOnlyDateStr(date) {
             const d = new Date(date);
+            console.log(d.toDateString());
             return d.toISOString().split('T')[0];
+        },
+        async getBoxOfficeByWeek(targetDt) {
+            const parameter = {
+                    key: this.key,
+                    targetDt,
+                    weekGb : 0
+                }
+            const url = this.baseUrl + this.boxOfficeByWeek;
+            return await this.$api(url, parameter);
+        },
+        getSplitDate(targetDt) {
+            const date = new Date(targetDt);
+            console.log(date.toDateString());
         }
-    },
+        
+        
+    }
 }
