@@ -1,11 +1,38 @@
 <?php
 namespace application\controllers;
-include_once "application/utils/SessionUtils.php";
 
-abstract class Controller {
-    public function __construct($action) {        
+class Controller {    
+    protected $model;
+    private static $needLoginUrlArr = [];
+
+    public function __construct($action, $model) {    
+        if(!isset($_SESSION)) {
+            session_start();
+        }    
+        $urlPaths = getUrl();
+        foreach(static::$needLoginUrlArr as $url) {
+            if(strpos( $urlPaths, $url) === 0 && !isset($_SESSION[_LOGINUSER]) ) {
+                echo "권한이 없습니다.";
+                exit();
+            }
+        }
+
+        $this->model = $model;
         $view = $this->$action();
-        require_once $this->getView($view); 
+        if(empty($view) && gettype($view) === "string") {
+            echo "Controller 에러 발생";
+            exit();
+        }
+
+        if(gettype($view) === "string") {
+            require_once $this->getView($view);             
+        } else if(gettype($view) === "object" || gettype($view) === "array") {
+            header("Content-Type:application/json");
+            echo json_encode($view);
+        }        
+    }
+    private function chkLoginUrl() {
+
     }
     
     protected function addAttribute($key, $val) {
@@ -15,11 +42,18 @@ abstract class Controller {
     protected function getView($view) {
         if(strpos($view, "redirect:") === 0) {
             header("Location: " . substr($view, 9));
-            return;
+            exit();
         }
         return _VIEW . $view;
-        //_VIEW : config.php 파일에 있음
-        //php : $는 "변수", ''는 "문자열", 앞에 아무것도 없도 대문자면 "상수(변하지 않는 값)"
+    }
+
+    protected function flash($name = '', $val = '') {
+        if(!empty($name)) { //공백이 아니면
+            if(!empty($val)) {
+                $_SESSION[$name] = $val;
+            } else if(empty($val) && !empty($_SESSION[$name])) {
+                unset($_SESSION[$name]);
+            }
+        }
     }
 }
-

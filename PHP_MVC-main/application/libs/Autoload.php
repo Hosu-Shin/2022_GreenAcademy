@@ -1,5 +1,4 @@
 <?php
-    //클래스를 자동으로 로드 하는 코드  
     spl_autoload_register(function ($path) {
         $path = str_replace('\\','/',$path);
         $paths = explode('/', $path);

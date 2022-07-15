@@ -1,14 +1,8 @@
 <?php
-if(!isset($_SESSION)) {
-    session_start();
-}
-
-function flash($name = '', $val = '') { //default로 ''줌
-    if(!empty($name)) { //공백이 아니면
-        if(!empty($val)) {
-            $_SESSION[$name] = $val;
-        } else if(empty($val) && !empty($_SESSION[$name])) {
-            unset($_SESSION[$name]);
-        }
+    function getLoginUser() {
+        return isset($_SESSION[_LOGINUSER]) ? $_SESSION[_LOGINUSER] : null;
     }
-}
+
+    function getIuser() {
+        return getLoginUser() === null ? 0 : getLoginUser()->iuser;
+    }
