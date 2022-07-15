@@ -35,6 +35,8 @@ export default {
                 case 'boxOfficeByDay':
                     this.list = (await this.getBoxOfficeByDay(targetDt)).boxOfficeResult.dailyBoxOfficeList;
                     break;
+                    
+                //Error : router > index.js 에서 BoxOfficByWeek라고 적어서 오류 났음
                 case 'boxOfficeByWeek':
                     this.list = (await this.getBoxOfficeByWeek(targetDt)).boxOfficeResult.weeklyBoxOfficeList;
                     break;
