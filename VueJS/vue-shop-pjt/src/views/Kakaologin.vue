@@ -16,15 +16,24 @@ export default {
             window.Kakao.Auth.login({
                 scope: 'profile_nickname, profile_image, account_email', //받고 싶은거 적으면 됨
                 success: this.getkakoAccount,
-
+                fail: e => {
+                    console.log(e);
+                }
             });
         },
         getKakoAccount() {
             window.kakap.API.request({
                 url: 'v2/user/me',
                 success: res => {
-                    const kakao_account = res.kakao_accout;
-                    console.log(kakao_account);
+                    const acc = res.kakao_accout;
+                    console.log(acc);
+                    const params = {
+                        email: acc.email,
+                        nickname: acc.profile.nickname,
+                        profile_img: acc.profile.profile_image_url,
+                        thumb_img: acc.profile.thumbail_image_url
+                    }
+                    console.log(params);
 
                     alert('로그인 성공!')
                 },
