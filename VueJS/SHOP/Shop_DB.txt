@@ -1,36 +1,35 @@
-[ db 파일 생성 ]
-
-dataBase : shop
-
-table > CREATE TABLE t_user (
+CREATE TABLE t_user (
 	iuser INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	social_type INT UNSIGNED NOT NULL,
+	social_type INT UNSIGNED NOT NULL COMMENT '0-local, 1-kakao, 2-naver, 3-google, 4-github, 5-facebook',
 	email VARCHAR(50) NOT NULL,
-	`type` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '0-local, 1-kakao, 2-naver, 3-google, 4-github, 5-facebook',
+	`type` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '1-buyer, 2-seller',
 	nickname VARCHAR(50) DEFAULT NULL,
 	profile_img VARCHAR(100),
 	thumb_img VARCHAR(100),
 	created_at DATETIME DEFAULT NOW(),
-	updated_at DATETIME DEFAULT NOW()
+	updated_at DATETIME DEFAULT NOW(),
+	UNIQUE(social_type, email)
 	);
 
-table > CREATE TABLE t_seller (
+DROP TABLE t_user;
+	
+CREATE TABLE t_seller (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(100) NOT NULL DEFAULT '',
 	email VARCHAR(100) NOT NULL DEFAULT '',
 	phone VARCHAR(20) NOT NULL DEFAULT '',
 	PRIMARY KEY(id)
 	);
-
-table > CREATE TABLE t_category (
+	
+CREATE TABLE t_category (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	cate1 VARCHAR(100) NOT NULL DEFAULT '',
 	cate2 VARCHAR(100) NOT NULL DEFAULT '',
 	cate3 VARCHAR(100) DEFAULT '',
 	PRIMARY KEY(id)
 	);
-
-table > CREATE TABLE t_product (
+	
+CREATE TABLE t_product (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	product_name VARCHAR(200) NOT NULL DEFAULT '',
 	product_price INT NOT NULL DEFAULT 0,
@@ -46,11 +45,12 @@ table > CREATE TABLE t_product (
 	FOREIGN KEY(category_id) REFERENCES t_category(id),
 	PRIMARY KEY(id)
 	);
-
-table > CREATE TABLE t_product_img(
+	
+CREATE TABLE t_product_img(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	product_id INT UNSIGNED NOT NULL,
 	`type` INT NOT NULL DEFAULT 1 COMMENT '1-썸네일, 2-제품이미지, 3-제품설명이미지',
 	path VARCHAR(150) NOT NULL DEFAULT '',
 	FOREIGN KEY(product_id) REFERENCES t_product(id)
 	);
+
