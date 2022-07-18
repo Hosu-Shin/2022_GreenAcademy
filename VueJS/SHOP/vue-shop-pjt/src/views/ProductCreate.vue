@@ -114,7 +114,45 @@ export default {
             cate1: '',
             cate2: '',
             cate3: '',
-        }
+        };
+    },
+    created() {
+        this.getCategoryList();
+    },
+    methods: {
+        async getCategoryList() {
+            const categoryList = await this.$get('/api/categoryList', {}); //get을 mixins에 만들어 준다
+            console.log(categoryList);
+            this.categoryList = categoryList;
+
+            let oCategory = {}; //const oCategory해도 주소값은 안 바뀌기 때문에 상관없음
+            categoryList.forEach(item => {
+                oCategory[item.cate1] = 1; //oCategory['전자제품'] = 1;
+            });
+
+            const cate1 = [];
+            for(const key in oCategory) {
+                cate1.push(key);
+            }
+            this.category1 = cate1;
+
+            const cate2 = categoryList.filter(c => {
+                return c.cate1 === cate1[0];
+            });
+            this.cate1 = cate1[0];
+            
+            const oCategory2 = {}; // ={} <-이것은 객체
+            cate2.forEach(item => {
+                oCategory2[item.cate2] = 2; //숫자는 의미 없는 것이므로 아무 숫자나 넣어도 됨다
+            });
+
+            const category2 = [];
+            for(const key in oCategory2) {
+                category2.push(key);
+            }
+            this.category2 = category2;
+
+        },
     }
 }
 </script>
