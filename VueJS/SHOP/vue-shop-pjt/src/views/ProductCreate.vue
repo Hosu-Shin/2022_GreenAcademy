@@ -57,11 +57,12 @@
                             </div>
 
                             <div class="col-auto" v-if="cate2 !== ''">
-                                <select class="form-select" v-model="cate3">
+                                <select class="form-select" v-model="selectedCateId">
                                     <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate.value }}</option>
                                     <!-- <option :key="idx" v-for="(cate, idx) in categoryObj[cate1][cate2]">{{ cate }}</option> -->
                                 </select>
                             </div>
+                            {{ selectedCateId }}
                     </div>
                 </div>
             </div>
@@ -111,7 +112,7 @@ export default {
             categoryObj: {},    
             cate1: '',
             cate2: '',
-            cate3: '',
+            selectedCateId: '',
         };
     },
     created() {
@@ -142,10 +143,10 @@ export default {
         },
         changeCate1() {
         this.cate2 = '';
-        this.cate3 = '';
+        this.selectedCateId = '';
         },
         changeCate2() {
-        this.cate3 = '';
+        this.selectedCateId = '';
         },
     }
 }
