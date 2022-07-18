@@ -44,23 +44,23 @@
                 <label class="col-md-3 col-form-label">Category</label>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-auto">
-                            <select class="form-select" v-model="cate1" @change="changeCategory1">
-                                <option :key="i" v-for="(cate, i) in category1">{{ cate }}</option> <!-- 출력 부분:{{ cate }}와 value값(:value="cate")이 같다면 value는 지워도 된다 -->
-                            </select>
-                        </div>
+                         <div class="col-auto">              
+                                <select class="form-select" v-model="cate1" @change="changeCate1">
+                                    <option :key="name" v-for="(value, name) of categoryObj">{{ name }}</option>
+                                </select>
+                            </div>
 
-                        <div class="col-auto">
-                            <select class="form-select" v-model="cate2" @change="changeCategory2">
-                                <option :key="i" v-for="(cate, i) in category2">{{ cate }}</option>
-                            </select>
-                        </div>
+                            <div class="col-auto" v-if="cate1 !== ''">
+                                <select class="form-select" v-model="cate2" @change="changeCate2">
+                                    <option :key="name" v-for="(value, name) of categoryObj[cate1]">{{ name }}</option>
+                                </select>
+                            </div>
 
-                        <div class="col-auto">
-                            <select class="form-select" v-model="cate3">
-                                <option :key="i" v-for="(cate, i) in category3">{{ cate }}</option>
-                            </select>
-                        </div>
+                            <div class="col-auto" v-if="cate2 !== ''">
+                                <select class="form-select" v-model="cate3">
+                                    <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate }}</option>
+                                </select>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -107,51 +107,40 @@ export default {
                 category_id: 1,
                 seller_id: 1,
             },
-            categoryList: [],
-            category1: [],
-            category2: [],
-            category3: [],
+            categoryObj: {},    
             cate1: '',
             cate2: '',
             cate3: '',
         };
     },
     created() {
-        this.getCategoryList();
-    },
+    this.getCategoryList();
+  },
     methods: {
         async getCategoryList() {
-            const categoryList = await this.$get('/api/categoryList', {}); //get을 mixins에 만들어 준다
-            console.log(categoryList);
-            this.categoryList = categoryList;
-
-            let oCategory = {}; //const oCategory해도 주소값은 안 바뀌기 때문에 상관없음
-            categoryList.forEach(item => {
-                oCategory[item.cate1] = 1; //oCategory['전자제품'] = 1;
-            });
-
-            const cate1 = [];
-            for(const key in oCategory) {
-                cate1.push(key);
+        const categoryList = await this.$get('/api/categoryList', {});
+        console.log(categoryList);
+        let cate1 = '';
+        let cate2 = '';      
+        categoryList.forEach(item => {
+            if(item.cate1 !== cate1) {
+            cate1 = item.cate1;
+            this.categoryObj[cate1] = {};
+            cate2 = '';          
             }
-            this.category1 = cate1;
-
-            const cate2 = categoryList.filter(c => {
-                return c.cate1 === cate1[0];
-            });
-            this.cate1 = cate1[0];
-            
-            const oCategory2 = {}; // ={} <-이것은 객체
-            cate2.forEach(item => {
-                oCategory2[item.cate2] = 2; //숫자는 의미 없는 것이므로 아무 숫자나 넣어도 됨다
-            });
-
-            const category2 = [];
-            for(const key in oCategory2) {
-                category2.push(key);
-            }
-            this.category2 = category2;
-
+            if(item.cate2 !== cate2) {
+            cate2 = item.cate2;
+            this.categoryObj[cate1][cate2] = [];
+            }        
+            this.categoryObj[cate1][cate2].push(item.cate3);
+        });      
+        },
+        changeCate1() {
+        this.cate2 = '';
+        this.cate3 = '';
+        },
+        changeCate2() {
+        this.cate3 = '';
         },
     }
 }
