@@ -11,4 +11,9 @@
             print_r($json);
             return [_RESULT => $this->model->productInsert($json)];
         }
+
+        public function productList2() {
+            $result = $this->model->productList2();
+            return $result === false ? [] : $result;
+        }
     }
