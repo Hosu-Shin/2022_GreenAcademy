@@ -6,12 +6,16 @@ import createPersistedState from 'vuex-persistedstate';
 export default createStore ({
   state() {
     return {
-      user: {}
+      user: {},
+      sellerSelectedProduct: {},
     }
   },
   mutations: {
     user: (state, data) => {
       state.user = data;
+    },
+    sallerSelectedProduct: (state, data) => {
+      state.sallerSelectedProduct = data;
     }
   },
   plugins: [

@@ -6,13 +6,18 @@ import ProductCreate from '../views/ProductCreate'
 import ProductUpdate from '../views/ProductUpdate'
 import SalesList from '../views/SalesList'
 import ImageInsert from '../views/ImageInsert'
+import store from '@/store'
+import swal from 'sweetalert2'
+
+const requireAuth = () => (to, from, next) => {
+  if(store.state.user.iuser === undefined) {
+    swal.fire('로그인을 하세요', '', 'warning');
+    return;
+  }
+  return next();
+}
 
 const routes = [
-  // {
-  //   path: '/kakaologin',
-  //   name: 'kakaologin',
-  //   component: KakaoLogin
-  // },
   {
     path: '/',
     name: 'Home',
@@ -26,7 +31,8 @@ const routes = [
   {
     path: '/create',
     name: 'ProductCreate',
-    component: ProductCreate
+    component: ProductCreate,
+    // beforeEnter: requireAuth()
   },
   {
     path: '/update',
@@ -41,7 +47,8 @@ const routes = [
   {
     path: '/image_insert',
     name: 'ImageInsert',
-    component: ImageInsert
+    component: ImageInsert,
+    // beforeEnter: requireAuth()
   },
   
 ]

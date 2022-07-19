@@ -20,15 +20,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr :key="name" v-for="(value, name) of ProductList">
+                <tr v-for="(product, idx) in productList" :key="product.id">
                     <td></td>
-                    <td>{{value.product_name}}</td>
-                    <td>{{value.product_price}}</td>
-                    <td>{{value.delivery_price}}</td>
-                    <td>{{value.add_delivery_price}}</td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.product_price }}</td>
+                    <td>{{ product.delivery_price }}</td>
+                    <td>{{ product.add_delivery_price }}</td>
                     <td>
-                        <button type="button" class="btn btn-info me-1">Image</button>
-                        <button type="button" class="btn btn-warning me-1">Edit</button>
+                        <!--
+                        <router-link class="nav-link" :to="{path: '/image_insert', query: {product_id: value.id}}">
+                            <button type="button" class="btn btn-info me-1">Image</button>
+                        </router-link>
+                        -->
+                        <button type="button" class="btn btn-info me-1" @click="goToImageInsert(idx)">Image</button>
+                        <router-link class="nav-link" :to="{path: '/update', query: {product_id: product.id}}">
+                            <button type="button" class="btn btn-warning me-1">Edit</button>
+                        </router-link>
                         <button type="button" class="btn btn-danger me-1">Delete</button>
                     </td>
                 </tr>
@@ -42,20 +49,23 @@
 export default {
     data() {
         return {
-            ProductList: [],
+            productList: [],
         }
     },
     created() {
-    this.getCategoryList();
+        this.getProductList();
     },
     methods: {
-        async getCategoryList() {
-            const productList = await this.$get('/api/productList2', {});
-            console.log(productList);
-            this.ProductList = productList;
+        async getProductList() {
+        this.productList = await this.$get('/api/productList2', {});
+        console.log(this.productList);
+        },
+        goToImageInsert(idx) {
+        this.$store.commit('sallerSelectedProduct', this.productList[idx]);
+        this.$router.push( {path: '/image_insert'} );
+
         }
     }
-
 }
 </script>
 

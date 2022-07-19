@@ -17,7 +17,7 @@ export default {
             return (await axios.get(url, {
                 params: param
             }).catch(e => {
-                console.log(e);
+                console.error(e);
             })).data;
         },
         
