@@ -174,7 +174,7 @@ export default {
                 cancelButtonText: '취소',
             }).then(async result => {
                 if(result.isConfirmed)  {
-                    const res = this.$post('/api/productInsert', {param: [this.product]});
+                    const res = this.$post('/api/productInsert', this.product);
                     console.log(res);
                     this.$swal.fire('저장되었습니다.', '', 'Success');
                     this.$router.push( {path: '/sales'} );
