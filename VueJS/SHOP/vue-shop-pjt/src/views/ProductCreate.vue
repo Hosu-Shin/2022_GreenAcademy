@@ -6,7 +6,7 @@
             <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Products</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" v-model="product.product_name">
+                    <input type="text" class="form-control" ref="product_name" v-model="product.product_name">
                 </div>
             </div>
 
@@ -14,7 +14,7 @@
                 <label class="col-md-3 col-form-label">Price</label>
                 <div class="col-md-9">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" v-model="product.product_price">
+                        <input type="number" class="form-control" ref="product_price" v-model="product.product_price">
                         <span class="input-group-text">💸</span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <label class="col-md-3 col-form-label">Shipping Costs</label>
                 <div class="col-md-9">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" v-model="product.delivery_price">
+                        <input type="number" class="form-control" ref="delivery_price" v-model="product.delivery_price">
                         <span class="input-group-text">💸</span>
                     </div>
                 </div>
@@ -57,12 +57,11 @@
                             </div>
 
                             <div class="col-auto" v-if="cate2 !== ''">
-                                <select class="form-select" v-model="selectedCateId">
+                                <select class="form-select" v-model="product.category_id">
                                     <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate.value }}</option>
                                     <!-- <option :key="idx" v-for="(cate, idx) in categoryObj[cate1][cate2]">{{ cate }}</option> -->
                                 </select>
                             </div>
-                            {{ selectedCateId }}
                     </div>
                 </div>
             </div>
@@ -77,7 +76,7 @@
                 <label class="col-md-3 col-form-label">Release Date</label>
                 <div class="col-md-9">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" v-model="product.outbound_days">
+                        <input type="number" class="form-control" ref="outbound_days" v-model="product.outbound_days">
                         <span class="input-group-text">Day Shipping</span>
                     </div>
                 </div>
@@ -106,13 +105,12 @@ export default {
                 add_delivery_price: 0,
                 tags: '',
                 outbound_days: 0,
-                category_id: 1,
+                category_id: '',
                 seller_id: 1,
             },
             categoryObj: {},    
             cate1: '',
             cate2: '',
-            selectedCateId: '',
         };
     },
     created() {
@@ -143,10 +141,45 @@ export default {
         },
         changeCate1() {
         this.cate2 = '';
-        this.selectedCateId = '';
+        this.product.category_id = '';
         },
         changeCate2() {
-        this.selectedCateId = '';
+        this.product.category_id = '';
+        },
+        productInsert() {
+            if(this.product.product_name.trim() === '') {
+                this.$refs.product_name.focus();
+                return this.$swal('제품명은 필수 입력값입니다.');
+            }
+            if(this.product.product_price === '' || this.product.product_price === 0) {
+                this.$refs.product_price.focus();
+                return this.$swal('제품 가격을 입력하세요.');
+            }
+            if(this.product.delivery_price === '' || this.product.delivery_price === 0) {
+                this.$refs.delivery_price.focus();
+                return this.$swal('배송료를 입력하세요.');
+            }
+            if(this.product.category_id === '') {
+                return this.$swal('카테고리를 선택해주세요.');
+            }
+            if(this.product.outbound_days === '' || this.product.outbound_days === 0) {
+                this.$refs.outbound_days.focus();
+                return this.$swal('출고일을 입력하세요.');
+            }
+
+            this.$swal.fire({
+                title: '정말 등록 하시겠습니까?',
+                showCancelButton: true,
+                confirmButtonText: '생성',
+                cancelButtonText: '취소',
+            }).then(async result => {
+                if(result.isConfirmed)  {
+                    const res = this.$post('/api/productInsert', {param: [this.product]});
+                    console.log(res);
+                    this.$swal.fire('저장되었습니다.', '', 'Success');
+                    this.$router.push( {path: '/sales'} );
+                }
+            })
         },
     }
 }

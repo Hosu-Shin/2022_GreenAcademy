@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
     methods: {
-        async $api(url, data) {
+        async $post(url, data) {
             return (await axios({
                 method: 'post',
                 url,
@@ -11,6 +12,15 @@ export default {
                 console.error(e);
             })).data;
         },
+
+        async $get(url, param) {
+            return (await axios.get(url, {
+                params: param
+            }).catch(e => {
+                console.log(e);
+            })).data;
+        },
+        
         $base64(file) {
             return new Promise(resolve => {
                 const fr = new FileReader();
