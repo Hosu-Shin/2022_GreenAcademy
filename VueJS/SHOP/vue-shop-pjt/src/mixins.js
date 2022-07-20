@@ -21,11 +21,20 @@ export default {
             })).data;
         },
         
+        async $delete(url, param) {
+            return (await axios.delete(url, {
+                params: param
+            }
+            ).catch(e => {
+                console.error(e);
+            })).data;
+        },
+
         $base64(file) {
             return new Promise(resolve => {
                 const fr = new FileReader();
                 fr.onload = e => {
-                    resolve(e.target.result);
+                    resolve(e.target.result); 
                 }
                 fr.readAsDataURL(file);
             });
