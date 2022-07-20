@@ -19,7 +19,7 @@
                 <div class="row">
                     ToDo: 썸네일 이미지 리스트 가져오는 로직 후 구현
                 </div>
-                <input type="file" class="form-control" accept="image/png,imgae/jpeg"
+                <input type="file" class="form-control" accept="image/png,image/jpeg"
                     @change="uploadFile($event.target.files, 1)">
                 <div class="alert alert-secondary" role="alert">
                     <ul>
@@ -37,7 +37,7 @@
                 <div class="row">
                     ToDo: 제품 이미지 리스트 가져오는 로직 후 구현
                 </div>
-                <input type="file" class="form-control" accept="image/png,imgae/jpeg"
+                <input type="file" class="form-control" accept="image/png,image/jpeg"
                     @change="uploadFile($event.target.files, 2)">
                 <div class="alert alert-secondary" role="alert">
                     <ul>
@@ -56,7 +56,7 @@
                 <div class="">
                     ToDo: 썸네일 이미지 리스트 가져오는 로직 후 구현
                 </div>
-                <input type="file" class="form-control" accept="image/png,imgae/jpeg"
+                <input type="file" class="form-control" accept="image/png,image/jpeg"
                     @change="uploadFile($event.target.files, 3)">
                 <div class="alert alert-secondary" role="alert">
                     <ul>
@@ -69,7 +69,7 @@
 
         <div class="mb-3 row m-auto">
             <router-link class="nav-link" to="/sales">
-            <button type="button" class="btn btn-lg btn-dark">확인</button>
+            <button type="button" class="btn btn-lg btn-dark">Confirm</button>
             </router-link>
         </div>
     </div>
@@ -86,10 +86,17 @@ export default {
         }
     },
     created() {
-        this.productId = this.$route.query.product_id;    
+        // this.productId = this.$route.query.product_id;    
         this.productDetail = this.$store.state.sallerSelectedProduct;
     },
         methods: {
+            async uploadFile(files, type) {
+            console.log(files);
+            const image = await this.$base64(files[0]);
+            const formData = { image };
+            const { error } = await this.$post(`/api/upload/${this.productDetail.id}/${type}`, formData);
+            console.log(error);
+            }
     }
 }
 </script>
