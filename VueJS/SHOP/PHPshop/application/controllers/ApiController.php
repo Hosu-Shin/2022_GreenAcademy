@@ -81,6 +81,7 @@
             switch(getMethod()) {
                 case _DELETE:
                     //이미지 파일 삭제
+                    /*
                     $productId = intval($urlPaths[2]);
                     print_r($urlPaths);
                     $type = intval($urlPaths[3]);
@@ -91,8 +92,17 @@
                     unlink($dirPath);
 
                     $param = ["product_image_id" => intval($urlPaths[5]) ];
+                    */
+                    $product_image_id = intval($urlPaths[2]);
+                    $product_id = intval($urlPaths[3]);
+                    $type = intval($urlPaths[4]);
+                    $path = $urlPaths[5];
 
-                    $result = $this->model->productImageDelete($param);
+                    $imgPath = _IMG_PATH . "/" . $product_id . "/" . $type . "/" . $path;
+                    if(unlink($imgPath)) {
+                        $param = ["product_image_id" => $product_image_id ];
+                        $result = $this->model->productImageDelete($param);
+                    }
                     break;
             }
 
