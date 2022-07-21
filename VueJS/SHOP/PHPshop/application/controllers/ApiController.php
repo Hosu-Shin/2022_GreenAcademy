@@ -1,5 +1,6 @@
 <?php
     namespace application\controllers;
+    use Exception;
 
     class ApiController extends Controller {
         public function categoryList() {
@@ -12,9 +13,12 @@
             return [_RESULT => $this->model->productInsert($json)];
         }
 
+        public function productList() {
+            return $this->model->productList();
+        }
+
         public function productList2() {
-            $result = $this->model->productList2();
-            return $result === false ? [] : $result;
+            return  $this->model->productList2();
         }
 
         public function productDetail() {
@@ -107,6 +111,60 @@
             }
 
             return [_RESULT => $result];
+        }
+
+        public function productDelete() {
+            /*
+            $urlPaths = getUrlPaths();
+            if(!isset($urlPaths[2])) {
+                exit();
+            }
+            //이미지 삭제
+            $result = 0;
+            switch(getMethod()) {
+                case _DELETE:
+                    $productId = intval($urlPaths[2]);
+                    $param =[
+                        'product_id' =>$productId
+                    ];
+                    $result = $this->model->productDelete($param);
+                    break;
+            }
+            return [_RESULT => $result];
+            */
+            $urlPaths = getUrlPaths();
+            if(count($urlPaths) !== 3) {
+                exit();
+            }
+            $productId = intval($urlPaths[2]);
+
+            //이미지 삭제
+            // rmdirAll(_IMG_PATH . "/" . $productId);
+
+            $param =[
+                'product_id' =>$productId
+            ];
+
+            try {
+                $param = [ "product_id" => $productId ];
+                $this->model->beginTransaction();
+                $this->model->productImageDelete($param);
+                $result = $this->model->productDelete($param);
+                if($result === 1) {
+                    //이미지 삭제
+                    rmdirAll(_IMG_PATH . "/" . $productId);    
+                    $this->model->commit();
+                } else {
+                    $this->model->rollback();    
+                }
+            } catch(Exception $e) {
+                print "에러발생<br>";
+                print $e . "<br>";
+                $this->model->rollback();
+            }    
+
+            return [_RESULT => $result];
+
         }
         
 

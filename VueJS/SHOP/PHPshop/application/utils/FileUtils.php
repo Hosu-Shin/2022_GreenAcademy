@@ -19,3 +19,27 @@ function gen_uuid_v4() {
         , mt_rand(0, 0xffff) 
     ); 
 }
+
+//rmdir : 디렉토리 내용 삭제 및 디렉토리 삭제
+function rmdirAll($delete_path) {
+    if(!is_dir($delete_path)) { return; }
+
+    $dirs = dir($delete_path);
+    
+    while(false !== ($entry = $dirs->read())) {
+        //디렉토리의 내용을 하나씩 읽는다
+        if(($entry != '.') && ($entry != '..')) {
+            //디렉토리의 내용 중 현재폴더, 상위폴더가 아니면 (즉 파일 및 디렉토리)
+            if(is_dir($delete_path.'/'.$entry)) {
+                //디렉토리이면 재귀호출로 다시 삭제 시작
+                rmdirAll($delete_path.'/'.$entry);
+            } else {
+                //해당 파일 삭제
+                @unlink($delete_path.'/'.$entry);
+            }
+        }
+    }
+    $dirs->close();
+    @rmdir($delete_path);
+    }
+    
