@@ -18,5 +18,34 @@
             <button type="button"> (╯‵□′)╯︵┻━┻ </button>
         </a>
     </div>
+    <div>
+        <table>
+            <tr>
+                <th>number</th>
+                <th>제목</th>
+                <th>조회수</th>
+                <th>등록일</th>
+            </tr>
+        @foreach($list as $item)
+            <tr class="row" data-id="{{ $item->id }}">
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->title }}</td>
+                <td>{{ $item->hits }}</td>
+                <td>{{ $item->created_at }}</td>
+            </tr>
+        @endforeach
+        </table>
+    </div>
+    <script>
+        const rowList = document.querySelectorAll('.row');
+        if(rowList) {
+            rowList.forEach(item => {
+                item.addEventListener('click', e => {
+                    location.href = `/boards/show?id=${item.dataset.id}`;
+                });
+                
+            });
+        }
+    </script>
 </body>
 </html>
