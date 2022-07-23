@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+
 @font-face {
     font-family: 'HallymGothic-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
     font-family: 'SUIT-Medium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'paybooc-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -35,19 +43,79 @@
     margin-bottom: 15px;
 }
 
+.cafe_name {
+    font-family: 'paybooc-Light';
+    font-size: 50px;
+    font-weight: 900;
+    font-style: bold;
+}
+
+.cafe_add {
+    font-family: 'paybooc-Light';
+    margin-top: 20px;
+}
+
+.cafe_info {
+    font-family: 'paybooc-Light';
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.insta_img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.cafe_info li { 
+    float: left;
+    margin-right: 80px;
+}
+
 .cafe_menu {
+    font-family: 'paybooc-Light';
     text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    font-style: bold;
     border-top: 2px solid #000;
-    padding-top: 20px;
-    font-size: 25px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
 .cafe_menu_li {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
+    font-family: 'paybooc-Light';
+    font-weight: 600;
+    padding: 5rem 5rem;
+}
+
+.cafe_menu_li li {
+    margin-bottom: 3rem;
 }
 
 .menu {
     margin-bottom: 15px;
+}
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.cafe_menu_button {
+    border-style: none;
+    background-color: #edd2b5;;
+    color: #5f3017;
+    cursor: pointer;
 }

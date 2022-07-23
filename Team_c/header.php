@@ -16,7 +16,7 @@
     {
         $login_user = $_SESSION['login_user'];
         $name = $login_user['name'];
-        $ment = "${name}님 환영합니다.";
+        $ment = "${name}";
         $log = "<a href='logout.php'>Logout</a>";
         $myPage = "<a href='write.php'>myPage</a>";
     }
@@ -46,7 +46,7 @@
             <!-- <audio controls autoplay loop id="myAudio">
                 <source src="https://win-web-nf01-sycdn.kuwo.cn/e0670e20a07e948ee2fbc08375efc074/6289f02c/resource/n3/50/68/763946567.mp3" type = "audio/mp3">
             s</audio> -->
-            <button class="btn1"><i class="fa-solid fa-headphones"></i></button>
+            <!-- <button class="btn1"><i class="fa-solid fa-headphones"></i></button>
             <script>
                 // document.getElementById('myAudio').play();
                 document.querySelector(".btn1").addEventListener("click", function () {
@@ -58,10 +58,10 @@
             
             // 음악 : https://www.musicenc.com/article/46228.html
             // 참고 : https://mjmjmj98.tistory.com/31
-            </script>
+            </script> -->
         </div>
         <ul class="navbar_links">
-            <li><?=$ment?></li>
+            <li><span class="host_ment"><?=$ment?></span>님 환영합니다</li>
             <li><?=$myPage?></li>
             <li><?=$log?></li>
             <li><?=$join?></li>

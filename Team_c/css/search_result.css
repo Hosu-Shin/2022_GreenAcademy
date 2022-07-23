@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+
 @font-face {
     font-family: 'HallymGothic-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
     font-family: 'SUIT-Medium';
@@ -37,7 +38,14 @@ html, body {
     margin-top: 40px;
 }
 
+.cafe_search_title {
+    font-family: 'HallymGothic-Regular';
+    font-weight: 800;
+    font-style: bold;
+}
+
 .search_cafe_ul li {
+    font-family: 'SUIT-Medium';
     display: flex;
     flex-direction: column;
     justify-content: center;

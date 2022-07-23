@@ -28,8 +28,9 @@
     <title>Document</title>
 </head>
 <body>
+<div><?php include_once 'select_header.php' ?></div>
 <div>
-    <div class="search_result"><?=$search?> 검색결과</div>
+    <div class="search_result cafe_search_title">"<?=$search?>" 검색결과</div>
         <ul class="search_cafe_ul">
             <?php while($row = mysqli_fetch_assoc($cafe_search))
             {
@@ -41,9 +42,9 @@
                 $holiday = $row['holiday'];
                 $cafe_num = $row['cafe_num'];
             ?>
-            <div class="box">
-                <div class="img">
-                <li><a href='detail.php?zone_num=<?=$zone_num?>&cafe_num=<?=$cafe_num?>'><img src='<?=$img?>' alt='카페 이미지' width=300px; height=300px></a></li>
+            <div class="box" style="margin-bottom:20px;">
+                <div class="img" style="position:relative; width:300px; height:300px">
+                <li><a href='detail.php?zone_num=<?=$zone_num?>&cafe_num=<?=$cafe_num?>'><img src='<?=$img?>' alt='카페 이미지' style="position:absolute; top:20px; left:0; transform:translate(50,50); width:100%; height:100%; object-fit:cover; margin:auto;"></a></li>
                 </div>
                 <div class="li">
                 <li><?=$cafe?></li>

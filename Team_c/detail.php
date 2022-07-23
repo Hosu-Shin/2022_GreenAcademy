@@ -50,12 +50,14 @@
             <li class="detail_img"><img src="<?=$img?>" alt="매장 사진" 
                 style = "object-fit:cover;" width="100%" height="600px"></li>
             <div class="detail_li">
-            <li><?=$cafe?></li>
-            <li>매장 주소 : <?=$addr?></li>
-            <li>매장 전화번호 : <?=$tel?></li>
-            <li>영업시간 : <?=substr($open_time,0,5)?> ~ <?=substr($close_time,0,5)?></li>
-            <li>휴일 : <?=$holiday?></li>
-            <li><a href="<?=$insta?>"><img src="img/insta_logo.jpg" alt="인스타" width="40px" height="40px"></a></li>
+                <li class="cafe_name"><?=$cafe?></li>
+                <li class="cafe_add">매장 주소 : <?=$addr?></li>
+                <div class="cafe_info">
+                    <li>매장 전화번호 : <?=$tel?></li>
+                    <li>영업시간 : <?=substr($open_time,0,5)?> ~ <?=substr($close_time,0,5)?></li>
+                    <li>휴일 : <?=$holiday?></li>
+                </div>
+                    <li><a href="<?=$insta?>"><img src="img/insta_logo.jpg" alt="인스타" class="insta_img"></a></li>
             </div>
         </ul>
     </div>
@@ -71,8 +73,8 @@
             <?php
                 if(isset($_SESSION['login_user']) && $login_user['u_num'] === $user) {
             ?>
-                    <div class="cafe_menu_button">
-                    <a href = "mod.php?zone_num=<?=$zone_num?>&cafe_num=<?=$cafe_num?>&menu_num=<?=$row['menu_num']?>"><button>수정</button></a>
+                    <div>
+                    <a href = "mod.php?zone_num=<?=$zone_num?>&cafe_num=<?=$cafe_num?>&menu_num=<?=$row['menu_num']?>"><button class="w-btn cafe_menu_button">수정</button></a>
                     </div>
             <?php }
             }

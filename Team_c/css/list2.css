@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+/* 한림고딕체 */
 @font-face {
     font-family: 'HallymGothic-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
+/* 수트글꼴 */
 @font-face {
     font-family: 'SUIT-Medium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 페이북글꼴 */
+@font-face {
+    font-family: 'paybooc-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -39,19 +51,41 @@ html, body {
     font-size: 30px;
 }
 
+.cafe_search_title {
+    font-family: 'HallymGothic-Regular';
+    font-weight: 800;
+    font-style: bold;
+}
+
 .search_input {
-    width: 150px;
+    width: 200px;
     height: 30px;
     border-style: none;
     border-bottom: 1px solid #000;
+    background-color: var(--background);
 }
 
 .search_input:focus {
     outline: none;
 }
 
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 25px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
 .submit_input {
     border-style: none;
+    background-color: #ce6d39;
+    color: #ffeee4;
 }
 
 .box{
@@ -60,6 +94,7 @@ html, body {
 }
 
 .list2_cafe_ul li {
+    font-family: 'SUIT-Medium';
     display: flex;
     flex-direction: column;
     justify-content: center;

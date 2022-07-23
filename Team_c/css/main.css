@@ -78,7 +78,7 @@ h2 {
 .main_ul a {
     font-family:'HallymGothic-Regular';
     font-size: 20px;
-    color: var(--background-color);
+    color: var(--background);
     font-weight: bold;
 }
 
@@ -87,6 +87,26 @@ h2 {
     height: 300px;
     object-fit: cover;
     box-shadow: 5px 5px 5px var(--background-color);
+}
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 50px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    box-shadow: 2px 2px 10px var(--background-color);
+}
+
+.zone-name {
+    border-style: none;
+    background-color: #ce6d39;
+    color: #ffeee4;
 }
 
 footer {

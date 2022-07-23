@@ -27,7 +27,7 @@
             ?> 
             <ul class = "main_ul">
                 <li><a href='list1.php?zone_num=<?=$zone_num?>'><img src=<?=$img?>></li>
-                <li><span><?=$zone_nm?><span></a></li>
+                <li class="zone-name w-btn" ><span><?=$zone_nm?><span></a></li>
             </ul>
             <?php
                 //echo "<li><a href='list1.php?zone_num=$zone_num'><img src='$img' width=300px; height=300px>$zone_nm</a></li>";
@@ -35,7 +35,7 @@
         ?>
     </div>
     <footer>
-    <h4>Copyright &copy; 2022 Café Inc. All rights reserved.<br> 조현민 신소연 <span class="fade-out-box">이성찬</span><br>(Special Thanks To. 이혜빈, 신혜미, 남그린, 신원영, 김준일, 김대홍, 이경식, 김동휘)</h4>
+    <h4>Copyright &copy; 2022 Café Inc. All rights reserved.<br> 조현민 신소연 <br></h4>
     </footer>
 </body>
 </html>

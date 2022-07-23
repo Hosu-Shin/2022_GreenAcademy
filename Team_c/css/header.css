@@ -3,6 +3,27 @@
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&family=Libre+Bodoni&display=swap');
 
+@font-face {
+    font-family: 'HallymGothic-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'paybooc-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 :root {
     --text-color: #f0f3f5;
@@ -73,6 +94,12 @@ header {
 .navbar_links li {
     padding: 8px 12px;
     font-size: 20px;
+}
+
+.host_ment {
+    font-family: 'HallymGothic-Regular';
+    font-style: bold;
+    color: rgb(243, 212, 165);
 }
 
 .navbar_toogleBtn {
