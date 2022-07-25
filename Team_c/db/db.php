@@ -2,7 +2,7 @@
 
     define("URL", "localhost");
     define("USERNAME", "root");
-    define("PASSWORD", "0819");
+    define("PASSWORD", "506greendg@");
     define("DB_NAME", "cafe");
 
     function get_conn(){

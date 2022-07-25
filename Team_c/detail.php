@@ -68,7 +68,7 @@
             {
                 $menu = $row['menu'];
                 $won = $row['won'];
-                echo "<li class='menu'>$menu ${won}원</li>";
+                echo "<li class='menu'>$menu " . "  _  " . "${won}원</li>";
             ?>
             <?php
                 if(isset($_SESSION['login_user']) && $login_user['u_num'] === $user) {

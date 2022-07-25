@@ -16,7 +16,7 @@
     {
         $login_user = $_SESSION['login_user'];
         $name = $login_user['name'];
-        $ment = "${name}";
+        $ment = "${name}님 환영합니다";
         $log = "<a href='logout.php'>Logout</a>";
         $myPage = "<a href='write.php'>myPage</a>";
     }
@@ -61,7 +61,7 @@
             </script> -->
         </div>
         <ul class="navbar_links">
-            <li><span class="host_ment"><?=$ment?></span>님 환영합니다</li>
+            <li><span class="host_ment"><?=$ment?></span></li>
             <li><?=$myPage?></li>
             <li><?=$log?></li>
             <li><?=$join?></li>

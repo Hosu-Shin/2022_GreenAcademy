@@ -35,7 +35,7 @@
         ?>
     </div>
     <footer>
-    <h4>Copyright &copy; 2022 Café Inc. All rights reserved.<br> 조현민 신소연 <br></h4>
+    <h4>Copyright &copy; 2022 Café Inc. All rights reserved.<br> 조현민 신소연 이혜빈 <br></h4>
     </footer>
 </body>
 </html>
