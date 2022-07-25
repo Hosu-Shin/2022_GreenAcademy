@@ -32,7 +32,7 @@
     </aside>
     <div class = "container">
         <h2>매장 등록하기</h2>
-            <div class = "login_user">
+            <div id ="login_text" class = "login_user">
                 <?=isset($_SESSION['login_user']) ? "<div>[". $user . "] 님 환영합니다.</div>" : "" ?>
             </div>
         <form action = "write_proc.php" method="post" enctype="multipart/form-data">

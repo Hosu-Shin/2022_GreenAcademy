@@ -103,6 +103,11 @@ aside a {
     color: rgb(75, 75, 75)
 }
 
+#login_text{
+    color: rgb(75, 75, 75);
+}
+
+
 .container {
     text-align: center;
     width: 500px;

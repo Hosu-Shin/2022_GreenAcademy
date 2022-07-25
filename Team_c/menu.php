@@ -40,8 +40,8 @@
     </aside>
     <div class = "container">
         <h2>메뉴 등록하기</h2>
-            <div class = "login_user">
-                <?=isset($_SESSION['login_user']) ? "<div>[". $user . "] 님 환영합니다.</div>" : "" ?>
+            <div id ="login_text" class = "login_user">
+                <?=isset($_SESSION['login_user']) ? "<div>[". $user . "] 님 환영합니다.</divs=>" : "" ?>
             </div>
         <form method = "post" action = "menu_proc.php">
             <table class = "table">

@@ -35,11 +35,19 @@
     }
 
     if ( $wu == 1 ) {
-        echo "<p>이미 등록된 이메일입니다.</p>";
-    } 
+    ?>
+        <script>
+            alert("이미 등록된 이메일입니다.");
+            location.href = "login.php";
+        </script>
+    <?php } 
     if ( $wp == 1 ) {
-        echo "<p>비밀번호가 일치하지 않습니다.</p>";
-    }
+    ?>
+        <script>
+            alert("비밀번호가 일치하지 않습니다.");
+            location.href = "login.php";
+        </script>
+    <?php }
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +66,7 @@
     <legend><h2>SIGN UP</h2></legend>
     <div class="join">
     <form action = "join.php" method = "post">
-        <div><input class="form" type = "text" name = "email" placeholder="이메일을 입력해 주세요." required></div>
+        <div><input class="form" type = "email" name = "email" placeholder="이메일을 입력해 주세요." required></div>
         <div><input class="form" type = "password" name = "pw" placeholder="비밀번호를 입력해 주세요." required></div>
         <div><input class="form" type = "password" name = "re_pw" placeholder="비밀번호를 다시 입력해 주세요." required></div>
         <div><input class="form" type = "text" name = "name" placeholder="닉네임을 입력해 주세요" required></div>
