@@ -66,7 +66,7 @@
                 <tr>
                     <th>가격 등록</th>
                     <td>
-                    <input type = "text" name = "won" class = "aligin" size="15" value = "<?=$row['won']?>" placeholder="원" required>
+                    <input type = "text" name = "won" class = "aligin" size="15" value = "<?=isset($row['won']) ? $row['won']: ''?>" placeholder="원" required>
                     </td>
                 </tr>
             </table>
